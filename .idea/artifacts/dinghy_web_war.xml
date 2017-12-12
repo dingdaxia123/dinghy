@@ -1,0 +1,8 @@
+<component name="ArtifactManager">
+  <artifact type="war" name="dinghy-web:war">
+    <output-path>$PROJECT_DIR$/dinghy-web/target</output-path>
+    <root id="archive" name="dinghy-web-1.0-SNAPSHOT.war">
+      <element id="artifact" artifact-name="dinghy-web:war exploded" />
+    </root>
+  </artifact>
+</component>

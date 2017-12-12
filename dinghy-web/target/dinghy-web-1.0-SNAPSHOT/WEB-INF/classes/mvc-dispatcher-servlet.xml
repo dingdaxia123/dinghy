@@ -1,0 +1,31 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:mvc="http://www.springframework.org/schema/mvc"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+        http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
+    <!--2个controller -->
+    <mvc:annotation-driven />
+    <context:component-scan base-package="com.dinghy.web.controller"/>
+
+    <!-- 拦截器 -->
+    <mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <mvc:exclude-mapping path="/index/login"/>
+            <mvc:exclude-mapping path="/index/register"/>
+            <mvc:exclude-mapping path="/index/payAdviceUrl"/>
+            <bean class="com.dinghy.web.interceptor.FirstInterceptor"/>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
+    <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
+        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="suffix" value=".jsp"/>
+    </bean>
+
+    <import resource="classpath:/META-INF/applicationContext.xml"/>
+    <import resource="classpath:/META-INF/service.xml"/>
+
+</beans>

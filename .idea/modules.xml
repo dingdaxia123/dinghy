@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/dinghy.iml" filepath="$PROJECT_DIR$/dinghy.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dinghy-dao/dinghy-dao.iml" filepath="$PROJECT_DIR$/dinghy-dao/dinghy-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dinghy-domain/dinghy-domain.iml" filepath="$PROJECT_DIR$/dinghy-domain/dinghy-domain.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dinghy-network/dinghy-network.iml" filepath="$PROJECT_DIR$/dinghy-network/dinghy-network.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dinghy-service/dinghy-service.iml" filepath="$PROJECT_DIR$/dinghy-service/dinghy-service.iml" />
+      <module fileurl="file://$PROJECT_DIR$/dinghy-web/dinghy-web.iml" filepath="$PROJECT_DIR$/dinghy-web/dinghy-web.iml" />
+    </modules>
+  </component>
+</project>

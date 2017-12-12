@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dinghy-dao" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dinghy-dao/src/main/resources/META-INF/applicationContext.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-dao/src/main/resources/META-INF/hibernate_entity/Cost.hbm.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-domain" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dinghy-network" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dinghy-network/src/main/java/com/dinghy/network/controller/CostController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-network/src/main/resources/network-servlet.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-service" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dinghy-web" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/dinghy-web/src/main/java/com/dinghy/web/controller/UserController.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-web/src/main/java/com/dinghy/web/interceptor/FirstInterceptor.java" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-web/src/main/resources/mvc-dispatcher-servlet.xml" charset="GBK" />
+    <file url="file://$PROJECT_DIR$/dinghy-web/src/main/webapp/WEB-INF/web.xml" charset="GBK" />
+    <file url="PROJECT" charset="UTF-8" />
+  </component>
+</project>

@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+    <hibernate-mapping default-access="field">
+        <class name="com.dinghy.domain.cost.Cost" table="cost">
+            <id name="id" type="java.lang.Long" column="COST_ID">
+                <!-- 用来指明主键的生成方式 -->
+                <generator class="sequence">
+                    <param name="sequence">cost_seq</param>
+                </generator>
+            </id>
+            <property name="name">
+                <column name="NAME">
+                    <comment>姓名</comment>
+                </column>
+            </property>
+            <property name="baseDuration">
+                <column name="BASE_DURATION">
+                    <comment>在线时长</comment>
+                </column>
+            </property>
+            <property name="baseCost">
+                <column name="BASE_COST">
+                    <comment>基本费用</comment>
+                </column>
+            </property>
+            <property name="unitCost">
+                <column name="UNIT_COST">
+                    <comment>单位费用</comment>
+                </column>
+            </property>
+            <property name="status">
+                <column name="STATUS">
+                    <comment>状态</comment>
+                </column>
+            </property>
+            <property name="descr">
+                <column name="DESCR">
+                    <comment>资费说明</comment>
+                </column>
+            </property>
+            <property name="createTime">
+                <column name="CREATIME">
+                    <comment>创建日期</comment>
+                </column>
+            </property>
+            <property name="startTime">
+                <column name="STARTIME">
+                    <comment>启用日期</comment>
+                </column>
+            </property>
+            <property name="costType">
+                <column name="COST_TYPE">
+                    <comment>资费类型</comment>
+                </column>
+            </property>
+
+        </class>
+    </hibernate-mapping>

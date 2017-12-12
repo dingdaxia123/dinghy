@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class name="com.dinghy.domain.user.User" table="admin_info">
+        <id name="id" type="java.lang.Long" column="ADMIN_ID">
+            <!-- 用来指明主键的生成方式 -->
+            <generator class="sequence" >
+                <param name="sequence">admin_info_seq</param>
+            </generator>
+        </id>
+        <property name="name">
+            <column name="NAME">
+                <comment>姓名</comment>
+            </column>
+        </property>
+        <property name="password">
+            <column name="PASSWORD">
+                <comment>密码</comment>
+            </column>
+        </property>
+        <property name="createTime">
+            <column name="CREATETIME">
+                <comment>创建时间</comment>
+            </column>
+        </property>
+        <property name="level">
+            <column name="USER_LEVEL">
+                <comment>等级</comment>
+            </column>
+            <type name="org.hibernate.type.EnumType">
+                <param name="enumClass">com.dinghy.domain.user.Level</param>
+            </type>
+        </property>
+    </class>
+</hibernate-mapping>
