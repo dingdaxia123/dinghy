@@ -12,4 +12,10 @@ public interface UserRpt {
 
     User getUser(String name, String password);
 
+    void delete(User user);
+
+    List<User> findUser(String name);
+
+
+
 }

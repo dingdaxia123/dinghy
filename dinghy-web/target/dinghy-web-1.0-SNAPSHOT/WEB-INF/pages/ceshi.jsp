@@ -14,5 +14,7 @@
 <a href="/index/pay">支付</a>
 <a href="/index/refund">退款</a>
 <a href="/index/payInquire">查询</a>
+<a href="/index/deleteUser">删除</a>
+<a href="/index/findUser">查询信息</a>
 </body>
 </html>

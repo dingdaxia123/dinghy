@@ -7,6 +7,7 @@ import com.dinghy.domain.util.StringUtils;
 import org.springframework.stereotype.Service;
 
 import javax.annotation.Resource;
+import java.util.List;
 
 /**
  * Created by dinghy on 2017/10/31.
@@ -38,4 +39,28 @@ public class UserServiceImpl implements UserService {
         }
 
     }
+
+
+    public String deleteUser(String name, String password) {
+        User user = userRpt.getUser(name, password);
+        if (user == null) {
+            return "error";
+        }
+        userRpt.delete(user);
+        return "删除成功";
+    }
+
+
+    public List<User> findUser(String name) {
+
+        if (name != null) {
+            List<User> listUser = userRpt.findUser(name);
+
+            return listUser;
+        }
+
+        return null;
+    }
+
+
 }

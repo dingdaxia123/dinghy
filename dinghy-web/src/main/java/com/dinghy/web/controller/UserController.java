@@ -9,11 +9,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by dinghy on 2017/11/1.
@@ -29,19 +31,19 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("user")
-    public String saveUser(String name , String password){
+    public String saveUser(String name, String password) {
         ModelMap modelMap = new ModelMap();
-        userService.save(name , password);
+        userService.save(name, password);
         User type = userService.getUser("admin", "123456");
 //        modelMap.addAttribute("type" , type);
         return "ceshi";
     }
 
-//    @ResponseBody
+    //    @ResponseBody
     @RequestMapping("login")
-    public String login(String name, String password, HttpServletRequest request, HttpSession httpSession){
+    public String login(String name, String password, HttpServletRequest request, HttpSession httpSession) {
 //        ModelAndView view;
-        User user = userService.getUser(name , password);
+        User user = userService.getUser(name, password);
         httpSession.setAttribute("user", user);
         String CharacterEncoding = "UTF-8";
         try {
@@ -58,12 +60,12 @@ public class UserController {
 //        String Succeed = request.getParameter("Succeed");
 //        String Result = request.getParameter("Result");
 //        String SignInfo= request.getParameter("SignInfo");
-        if(user != null){
+        if (user != null) {
 //            view =new ModelAndView("ceshi");
 //            view.addObject("password" , password);
 //            view.addObject("name" , name);
             return "redirect:main";
-        }else {
+        } else {
 //            view = new ModelAndView();
 //            view.setViewName("login");
             return "login";
@@ -71,18 +73,45 @@ public class UserController {
     }
 
     @RequestMapping("register")
-    public String register(String name, String password){
-        if(StringUtils.isNotBlank(name)&&StringUtils.isNotBlank(password)){
+    public String register(String name, String password) {
+        if (StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password)) {
             logger.error("success:用户存储成功");
             userService.save(name, password);
             return "redirect:login";
-        }else {
+        } else {
             return "register";
         }
     }
 
+    @RequestMapping("deleteUser")
+    public ModelAndView deleteUser(String name, String password) {
+        ModelAndView modelAndView;
+        if (StringUtils.isNotBlank(name) || StringUtils.isNotBlank(password)) {
+            String result = userService.deleteUser(name, password);
+            modelAndView = new ModelAndView("delete");
+            modelAndView.addObject("result", result);
+            return modelAndView;
+        }
+        modelAndView = new ModelAndView("delete");
+
+        return modelAndView;
+    }
+
+    @RequestMapping("findUser")
+    public ModelAndView findUser(String name) {
+        ModelAndView modelAndView;
+        if (StringUtils.isNotBlank(name)) {
+            List<User> userList = userService.findUser(name);
+            modelAndView = new ModelAndView("find");
+            modelAndView.addObject("userList", userList);
+            return modelAndView;
+        }
+        modelAndView = new ModelAndView("find");
+        return modelAndView;
+    }
+
     @RequestMapping("main")
-    public String main(){
+    public String main() {
         return "ceshi";
     }
 
