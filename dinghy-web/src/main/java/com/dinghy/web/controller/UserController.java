@@ -1,7 +1,7 @@
 package com.dinghy.web.controller;
 
 import com.dinghy.domain.user.User;
-import com.dinghy.domain.user.server.UserServer;
+import com.dinghy.domain.user.service.UserService;
 import com.dinghy.domain.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
@@ -24,15 +24,15 @@ public class UserController {
     Logger logger = (Logger) LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     @Resource
-    private UserServer userServer;
+    private UserService userService;
 
 
     @ResponseBody
     @RequestMapping("user")
     public String saveUser(String name , String password){
         ModelMap modelMap = new ModelMap();
-        userServer.save(name , password);
-        User type = userServer.getUser("admin", "123456");
+        userService.save(name , password);
+        User type = userService.getUser("admin", "123456");
 //        modelMap.addAttribute("type" , type);
         return "ceshi";
     }
@@ -41,7 +41,7 @@ public class UserController {
     @RequestMapping("login")
     public String login(String name, String password, HttpServletRequest request, HttpSession httpSession){
 //        ModelAndView view;
-        User user = userServer.getUser(name , password);
+        User user = userService.getUser(name , password);
         httpSession.setAttribute("user", user);
         String CharacterEncoding = "UTF-8";
         try {
@@ -74,7 +74,7 @@ public class UserController {
     public String register(String name, String password){
         if(StringUtils.isNotBlank(name)&&StringUtils.isNotBlank(password)){
             logger.error("success:用户存储成功");
-            userServer.save(name, password);
+            userService.save(name, password);
             return "redirect:login";
         }else {
             return "register";

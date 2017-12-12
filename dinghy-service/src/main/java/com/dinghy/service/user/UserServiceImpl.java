@@ -2,7 +2,7 @@ package com.dinghy.service.user;
 
 import com.dinghy.domain.user.User;
 import com.dinghy.domain.user.rpt.UserRpt;
-import com.dinghy.domain.user.server.UserServer;
+import com.dinghy.domain.user.service.UserService;
 import com.dinghy.domain.util.StringUtils;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +12,7 @@ import javax.annotation.Resource;
  * Created by dinghy on 2017/10/31.
  */
 @Service
-public class UserServiceImpl implements UserServer{
+public class UserServiceImpl implements UserService {
 
     @Resource
     private UserRpt userRpt;
