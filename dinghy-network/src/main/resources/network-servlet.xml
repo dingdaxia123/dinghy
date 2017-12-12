@@ -12,6 +12,16 @@
 
     <!--<context:annotation-config/>-->
     <context:component-scan base-package="com.dinghy.network.controller"/>
+    <!-- 拦截器 -->
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/index/login"/>-->
+            <!--<mvc:exclude-mapping path="/index/register"/>-->
+            <!--<mvc:exclude-mapping path="/index/payAdviceUrl"/>-->
+            <!--<bean class="com.dinghy.web.interceptor.FirstInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <!--<context:annotation-config>com.dinghy.domain</context:annotation-config>-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
