@@ -12,7 +12,14 @@
       </configuration>
     </facet>
     <facet type="Spring" name="Spring">
-      <configuration />
+      <configuration>
+        <fileset id="fileset" name="Spring Application Context" removed="false">
+          <file>file://$MODULE_DIR$/../dinghy-dao/src/main/resources/META-INF/applicationContext.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/network-servlet.xml</file>
+          <file>file://$MODULE_DIR$/src/main/resources/network.xml</file>
+          <file>file://$MODULE_DIR$/../dinghy-service/src/main/resources/META-INF/service.xml</file>
+        </fileset>
+      </configuration>
     </facet>
   </component>
   <component name="NewModuleRootManager" LANGUAGE_LEVEL="JDK_1_8" inherit-compiler-output="false">
