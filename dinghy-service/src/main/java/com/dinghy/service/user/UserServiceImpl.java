@@ -1,6 +1,7 @@
 package com.dinghy.service.user;
 
 import com.dinghy.domain.user.User;
+import com.dinghy.domain.user.UserResult;
 import com.dinghy.domain.user.rpt.UserRpt;
 import com.dinghy.domain.user.service.UserService;
 import com.dinghy.domain.util.StringUtils;
@@ -19,14 +20,19 @@ public class UserServiceImpl implements UserService {
     private UserRpt userRpt;
 
     @Override
-    public void save(String name, String password) {
+    public String save(String name, String password) {
         if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password)){
-            User user = new User(name , password);
-            userRpt.put(user);
+            List<User> userList = userRpt.findUser(name);
+            if(userList.size() == 0 || userList == null){
+                User user = new User(name, password);
+                userRpt.put(user);
+                return UserResult.Success.getText();
+            }else {
+                return UserResult.NameRepeat.getText();
+            }
         }else {
-            System.out.println("有必填参数为空");
+            return UserResult.ParamNull.getText();
         }
-
     }
 
     @Override

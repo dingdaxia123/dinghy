@@ -3,11 +3,11 @@
     "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
     "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
     <hibernate-mapping default-access="field">
-        <class name="com.dinghy.domain.cost.Cost" table="cost">
-            <id name="id" type="java.lang.Long" column="COST_ID">
+        <class name="com.dinghy.domain.cost.Cost" table="dhy_cost">
+            <id name="id" type="java.lang.Long" column="dhy_cost_id">
                 <!-- 用来指明主键的生成方式 -->
                 <generator class="sequence">
-                    <param name="sequence">cost_seq</param>
+                    <param name="sequence">dhy_cost_seq</param>
                 </generator>
             </id>
             <property name="name">

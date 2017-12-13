@@ -12,7 +12,7 @@
   <title>查询用户信息</title>
 </head>
 <form action="/index/findUser" method="post">
-  <tr>查询<input type="text" name="name" value="${name}"></tr>
+  <tr>查询<input type="text" name="name" value="${user.name}"></tr>
   <input type="submit" name="b1" value="查询用户信息">
   <table>
 <c:choose>

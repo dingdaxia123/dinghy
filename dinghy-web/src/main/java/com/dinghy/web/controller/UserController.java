@@ -1,6 +1,7 @@
 package com.dinghy.web.controller;
 
 import com.dinghy.domain.user.User;
+import com.dinghy.domain.user.UserResult;
 import com.dinghy.domain.user.service.UserService;
 import com.dinghy.domain.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -35,14 +36,11 @@ public class UserController {
         ModelMap modelMap = new ModelMap();
         userService.save(name, password);
         User type = userService.getUser("admin", "123456");
-//        modelMap.addAttribute("type" , type);
         return "ceshi";
     }
 
-    //    @ResponseBody
     @RequestMapping("login")
     public String login(String name, String password, HttpServletRequest request, HttpSession httpSession) {
-//        ModelAndView view;
         User user = userService.getUser(name, password);
         httpSession.setAttribute("user", user);
         String CharacterEncoding = "UTF-8";
@@ -51,35 +49,31 @@ public class UserController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-//        String ip = request.getRemoteAddr();
-//        String MerNo = "16886";
-//        String BillNo = request.getParameter("BillNo");
-//        String OrderNo=request.getParameter("OrderNo");
-//        String Amount = request.getParameter("Amount");
-//        String tradeOrder = request.getParameter("tradeOrder");
-//        String Succeed = request.getParameter("Succeed");
-//        String Result = request.getParameter("Result");
-//        String SignInfo= request.getParameter("SignInfo");
         if (user != null) {
-//            view =new ModelAndView("ceshi");
-//            view.addObject("password" , password);
-//            view.addObject("name" , name);
+            logger.info("success:登录成功！");
             return "redirect:main";
         } else {
-//            view = new ModelAndView();
-//            view.setViewName("login");
             return "login";
         }
     }
 
     @RequestMapping("register")
-    public String register(String name, String password) {
-        if (StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password)) {
-            logger.error("success:用户存储成功");
-            userService.save(name, password);
-            return "redirect:login";
-        } else {
-            return "register";
+    public ModelAndView register(String name, String password) {
+        ModelAndView modelAndView;
+        String result = userService.save(name, password);
+        if(result.equals(UserResult.Success.getText())){
+            modelAndView = new ModelAndView("redirect:login");
+            modelAndView.addObject("result", result);
+            logger.info("success:用户储存成功");
+            return modelAndView;
+        }else if(result.equals(UserResult.NameRepeat.getText())){
+            modelAndView = new ModelAndView("register");
+            modelAndView.addObject("result", result);
+            logger.error("error:用户已存在");
+            return modelAndView;
+        }else{
+            modelAndView = new ModelAndView("register");
+            return modelAndView;
         }
     }
 
@@ -112,7 +106,7 @@ public class UserController {
 
     @RequestMapping("main")
     public String main() {
-        return "ceshi";
+        return "main";
     }
 
     public static void main(String[] args) {

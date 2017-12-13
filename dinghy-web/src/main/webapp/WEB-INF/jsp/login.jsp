@@ -15,8 +15,9 @@
     <td><input name="name" type="text" class="width150" value="${name}"></td>
     <td><input name="password" type="text" class="width150" value="${password}"></td>
     <input type="submit" name="b1" value="Payment">
+    <%--<td>${result}</td>--%>
     <a href="/index/register">注册</a>
-    <a href="/index/refund">退款</a>
+    <%--<a href="/index/refund">退款</a>--%>
   </form>
 </body>
 </html>

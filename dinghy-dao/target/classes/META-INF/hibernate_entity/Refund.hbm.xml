@@ -3,11 +3,11 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field">
-    <class name="com.dinghy.domain.order.Refund" table="REFUND">
-        <id name="id" type="java.lang.Long" column="REFUND_ID">
+    <class name="com.dinghy.domain.order.Refund" table="dhy_refund">
+        <id name="id" type="java.lang.Long" column="dhy_refund_id">
             <!-- 用来指明主键的生成方式 -->
             <generator class="sequence" >
-                <param name="sequence">refund_seq</param>
+                <param name="sequence">dhy_refund_seq</param>
             </generator>
         </id>
         <property name="merCode">
