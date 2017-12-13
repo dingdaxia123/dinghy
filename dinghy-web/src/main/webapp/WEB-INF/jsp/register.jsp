@@ -15,6 +15,7 @@
   <td><input name="name" type="text" class="width150" value="${name}"></td>
   <td><input name="password" type="text" class="width150" value="${password}"></td>
   <input type="submit" name="b1" value="注册">
+  <tr>${result}</tr>
 </form>
 </body>
 </html>

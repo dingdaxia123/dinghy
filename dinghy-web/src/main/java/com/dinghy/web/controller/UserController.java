@@ -1,6 +1,7 @@
 package com.dinghy.web.controller;
 
 import com.dinghy.domain.user.User;
+import com.dinghy.domain.user.UserResult;
 import com.dinghy.domain.user.service.UserService;
 import com.dinghy.domain.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
@@ -9,11 +10,13 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.io.UnsupportedEncodingException;
+import java.util.List;
 
 /**
  * Created by dinghy on 2017/11/1.
@@ -29,19 +32,16 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping("user")
-    public String saveUser(String name , String password){
+    public String saveUser(String name, String password) {
         ModelMap modelMap = new ModelMap();
-        userService.save(name , password);
+        userService.save(name, password);
         User type = userService.getUser("admin", "123456");
-//        modelMap.addAttribute("type" , type);
         return "ceshi";
     }
 
-//    @ResponseBody
     @RequestMapping("login")
-    public String login(String name, String password, HttpServletRequest request, HttpSession httpSession){
-//        ModelAndView view;
-        User user = userService.getUser(name , password);
+    public String login(String name, String password, HttpServletRequest request, HttpSession httpSession) {
+        User user = userService.getUser(name, password);
         httpSession.setAttribute("user", user);
         String CharacterEncoding = "UTF-8";
         try {
@@ -49,41 +49,64 @@ public class UserController {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-//        String ip = request.getRemoteAddr();
-//        String MerNo = "16886";
-//        String BillNo = request.getParameter("BillNo");
-//        String OrderNo=request.getParameter("OrderNo");
-//        String Amount = request.getParameter("Amount");
-//        String tradeOrder = request.getParameter("tradeOrder");
-//        String Succeed = request.getParameter("Succeed");
-//        String Result = request.getParameter("Result");
-//        String SignInfo= request.getParameter("SignInfo");
-        if(user != null){
-//            view =new ModelAndView("ceshi");
-//            view.addObject("password" , password);
-//            view.addObject("name" , name);
+        if (user != null) {
+            logger.info("success:登录成功！");
             return "redirect:main";
-        }else {
-//            view = new ModelAndView();
-//            view.setViewName("login");
+        } else {
             return "login";
         }
     }
 
     @RequestMapping("register")
-    public String register(String name, String password){
-        if(StringUtils.isNotBlank(name)&&StringUtils.isNotBlank(password)){
-            logger.error("success:用户存储成功");
-            userService.save(name, password);
-            return "redirect:login";
-        }else {
-            return "register";
+    public ModelAndView register(String name, String password) {
+        ModelAndView modelAndView;
+        String result = userService.save(name, password);
+        if(result.equals(UserResult.Success.getText())){
+            modelAndView = new ModelAndView("redirect:login");
+            modelAndView.addObject("result", result);
+            logger.info("success:用户储存成功");
+            return modelAndView;
+        }else if(result.equals(UserResult.NameRepeat.getText())){
+            modelAndView = new ModelAndView("register");
+            modelAndView.addObject("result", result);
+            logger.error("error:用户已存在");
+            return modelAndView;
+        }else{
+            modelAndView = new ModelAndView("register");
+            return modelAndView;
         }
     }
 
+    @RequestMapping("deleteUser")
+    public ModelAndView deleteUser(String name, String password) {
+        ModelAndView modelAndView;
+        if (StringUtils.isNotBlank(name) || StringUtils.isNotBlank(password)) {
+            String result = userService.deleteUser(name, password);
+            modelAndView = new ModelAndView("delete");
+            modelAndView.addObject("result", result);
+            return modelAndView;
+        }
+        modelAndView = new ModelAndView("delete");
+
+        return modelAndView;
+    }
+
+    @RequestMapping("findUser")
+    public ModelAndView findUser(String name) {
+        ModelAndView modelAndView;
+        if (StringUtils.isNotBlank(name)) {
+            List<User> userList = userService.findUser(name);
+            modelAndView = new ModelAndView("find");
+            modelAndView.addObject("userList", userList);
+            return modelAndView;
+        }
+        modelAndView = new ModelAndView("find");
+        return modelAndView;
+    }
+
     @RequestMapping("main")
-    public String main(){
-        return "ceshi";
+    public String main() {
+        return "main";
     }
 
     public static void main(String[] args) {

@@ -10,14 +10,16 @@
             http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
             http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-2.5.xsd">
 
+    <!--扫描配置文件(这里指向的是之前配置的那个config.properties)-->
+    <context:property-placeholder location="classpath:/META-INF/config.properties" />
     <!-- 配置数据源 -->
     <bean id="ds" class="com.mchange.v2.c3p0.ComboPooledDataSource" destroy-method="close">
         <!-- 配置链接数据库 -->
         <!-- 配置链接参数 -->
-        <property name="jdbcUrl" value="jdbc:oracle:thin:@localhost:1521:xe"/>
-        <property name="driverClass" value="oracle.jdbc.OracleDriver"/>
-        <property name="user" value="dhy"/>
-        <property name="password" value="huichao123"/>
+        <property name="jdbcUrl" value="${jdbc.url}"/>
+        <property name="driverClass" value="${jdbc.driver}"/>
+        <property name="user" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
 
         <!-- 配置连接池 -->
         <property name="initialPoolSize" value="3"/>

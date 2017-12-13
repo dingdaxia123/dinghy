@@ -3,14 +3,14 @@
         "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
         "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
 <hibernate-mapping default-access="field">
-    <class name="com.dinghy.domain.user.User" table="admin_info">
-        <id name="id" type="java.lang.Long" column="ADMIN_ID">
+    <class name="com.dinghy.domain.user.User" table="dhy_user">
+        <id name="id" type="java.lang.Long" column="dhy_user_id">
             <!-- 用来指明主键的生成方式 -->
             <generator class="sequence" >
-                <param name="sequence">admin_info_seq</param>
+                <param name="sequence">dhy_user_seq</param>
             </generator>
         </id>
-        <property name="name">
+        <property name="name" unique="false">
             <column name="NAME">
                 <comment>姓名</comment>
             </column>
