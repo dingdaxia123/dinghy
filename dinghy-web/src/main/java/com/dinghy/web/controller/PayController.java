@@ -57,7 +57,7 @@ public class PayController {
         String Result = request.getParameter("Result");
         String SignInfo = request.getParameter("SignInfo");
         Md5Utils md5 = new Md5Utils();
-        String md5src = "MerNo11=" + MerNo + "&" + "BillNo=" + BillNo + "&" + "OrderNo=" + OrderNo + "&" + "Amount=" + Amount + "&" + "Succeed=" + Succeed + "&" + "zhuxiang";
+        String md5src = "MerNo=" + MerNo + "&" + "BillNo=" + BillNo + "&" + "OrderNo=" + OrderNo + "&" + "Amount=" + Amount + "&" + "Succeed=" + Succeed + "&" + "zhuxiang";
         String md5sign; //MD5加密后的字符串
         md5sign = md5.getMD5ofStr(md5src);//MD5检验结果
         if (md5sign.equals(SignInfo)) {
