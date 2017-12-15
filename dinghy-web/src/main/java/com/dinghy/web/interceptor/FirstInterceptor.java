@@ -24,7 +24,7 @@ public class FirstInterceptor implements HandlerInterceptor{
     public boolean preHandle(HttpServletRequest request, HttpServletResponse response, Object obj) throws Exception {
         User user = (User)request.getSession().getAttribute("user");
         if(user == null){
-            response.sendRedirect(request.getContextPath()+"111/231");
+            response.sendRedirect(request.getContextPath()+"login");
             return false;
         }
         System.out.println("postHandle123");

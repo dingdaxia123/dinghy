@@ -18,8 +18,8 @@ public class UserRptImpl extends Hibernate implements UserRpt{
     }
 
     @Override
-    public User getUser(String name, String password) {
-        List<User> list = (List<User>)getHibernateTemplate().find("from User t where t.name=? and password=?",name,password);
+    public User getUser(String accountNumber, String password) {
+        List<User> list = (List<User>)getHibernateTemplate().find("from User t where t.accountNumber=? and password=?",accountNumber,password);
         return list.isEmpty()?null:(User)list.get(0);
 
     }

@@ -10,6 +10,9 @@ public class User implements Serializable {
     private Long id;
     private String name;
     private String password;
+    private String phone;
+    private String email;
+    private String accountNumber;
     private Date createTime = new Date();
     private Level level=Level.ONE;
 
@@ -17,6 +20,14 @@ public class User implements Serializable {
         this.name = name;
         this.password = password;
         this.level=getLevel();
+    }
+
+    public User(String name, String password, String phone, String email, String accountNumber) {
+        this.name = name;
+        this.password = password;
+        this.phone = phone;
+        this.email = email;
+        this.accountNumber = accountNumber;
     }
 
     public User() {
@@ -48,5 +59,33 @@ public class User implements Serializable {
 
     public Date getCreateTime() {
         return createTime;
+    }
+
+    public String getPhone() {
+        return phone;
+    }
+
+    public void setPhone(String phone) {
+        this.phone = phone;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
     }
 }

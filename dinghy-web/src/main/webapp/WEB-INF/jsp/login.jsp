@@ -20,17 +20,20 @@
     <%--<td><input name="password" type="text" class="width150" value="${password}"/></td>--%>
     <%--<input type="submit" name="b1" value="Payment">--%>
     <%--<a href="/index/register">注册</a>--%>
+    <div id="header">
+        <a  href="register">[注册]</a>
+    </div>
     <div class="login_box">
         <form action="login" method="post">
         <table>
             <tr>
                 <td class="login_info">账号：</td>
-                <td colspan="2"><input name="name" type="text" class="width150" value="${name}"/></td>
+                <td colspan="2"><input name="accountNumber" type="text" class="width150" value="${accountNumber}"/></td>
                 <td class="login_error_info"><span class="required">30长度的字母、数字和下划线</span></td>
             </tr>
             <tr>
                 <td class="login_info">密码：</td>
-                <td colspan="2"><input name="password" type="password" class="width150" vale="${passwrod}"/></td>
+                <td colspan="2"><input name="password" type="password" class="width150" vale="${password}"/></td>
                 <td><span class="required">30长度的字母、数字和下划线</span></td>
             </tr>
             <tr>

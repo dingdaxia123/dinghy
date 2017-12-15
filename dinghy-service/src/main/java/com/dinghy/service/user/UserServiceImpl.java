@@ -20,11 +20,11 @@ public class UserServiceImpl implements UserService {
     private UserRpt userRpt;
 
     @Override
-    public String save(String name, String password) {
-        if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password)){
-            List<User> userList = userRpt.findUser(name);
+    public String save(String name, String password, String phone, String email, String accountNumber) {
+        if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password) && StringUtils.isNotBlank(accountNumber)){
+            List<User> userList = userRpt.findUser(accountNumber);
             if(userList.size() == 0 || userList == null){
-                User user = new User(name, password);
+                User user = new User(name, password, phone, email, accountNumber);
                 userRpt.put(user);
                 return UserResult.Success.getText();
             }else {
@@ -36,9 +36,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getUser(String name, String password) {
-        if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password)) {
-            User user = userRpt.getUser(name, password);
+    public User getUser(String accountNumber, String password) {
+        if(StringUtils.isNotBlank(accountNumber) && StringUtils.isNotBlank(password)) {
+            User user = userRpt.getUser(accountNumber, password);
             return user;
         }else {
             return null;
@@ -68,5 +68,14 @@ public class UserServiceImpl implements UserService {
         return null;
     }
 
+    @Override
+    public void updateUser(String name, String phone, String email, User user) {
+        if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(email) && StringUtils.isNotBlank(phone) && user !=null) {
+            user.setEmail(email);
+            user.setName(name);
+            user.setPhone(phone);
+            userRpt.put(user);
+        }
+    }
 
 }

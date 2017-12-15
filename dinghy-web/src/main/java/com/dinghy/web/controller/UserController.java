@@ -34,14 +34,14 @@ public class UserController {
     @RequestMapping("user")
     public String saveUser(String name, String password) {
         ModelMap modelMap = new ModelMap();
-        userService.save(name, password);
+//        userService.save(name, password);
         User type = userService.getUser("admin", "123456");
         return "ceshi";
     }
 
     @RequestMapping("login")
-    public String login(String name, String password, HttpServletRequest request, HttpSession httpSession) {
-        User user = userService.getUser(name, password);
+    public String login(String accountNumber, String password, HttpServletRequest request, HttpSession httpSession) {
+        User user = userService.getUser(accountNumber, password);
         httpSession.setAttribute("user", user);
         String CharacterEncoding = "UTF-8";
         try {
@@ -58,20 +58,20 @@ public class UserController {
     }
 
     @RequestMapping("register")
-    public ModelAndView register(String name, String password) {
+    public ModelAndView register(String name, String password, String phone, String email, String accountNumber) {
         ModelAndView modelAndView;
-        String result = userService.save(name, password);
-        if(result.equals(UserResult.Success.getText())){
+        String result = userService.save(name, password, phone, email, accountNumber);
+        if (result.equals(UserResult.Success.getText())) {
             modelAndView = new ModelAndView("redirect:login");
             modelAndView.addObject("result", result);
             logger.info("success:用户储存成功");
             return modelAndView;
-        }else if(result.equals(UserResult.NameRepeat.getText())){
+        } else if (result.equals(UserResult.NameRepeat.getText())) {
             modelAndView = new ModelAndView("register");
             modelAndView.addObject("result", result);
             logger.error("error:用户已存在");
             return modelAndView;
-        }else{
+        } else {
             modelAndView = new ModelAndView("register");
             return modelAndView;
         }
@@ -101,6 +101,30 @@ public class UserController {
             return modelAndView;
         }
         modelAndView = new ModelAndView("find");
+        return modelAndView;
+    }
+
+    @RequestMapping("getUser")
+    public ModelAndView getUser(HttpServletRequest request) {
+        User user = (User) request.getSession().getAttribute("user");
+        ModelAndView modelAndView = new ModelAndView("user_info");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+    @RequestMapping("updateUser")
+    public ModelAndView updateUser(HttpServletRequest request, String name, String phone, String email) {
+        ModelAndView modelAndView;
+        User user = (User) request.getSession().getAttribute("user");
+        String accountNumber = user.getAccountNumber();
+        String password = user.getPassword();
+        User result = userService.getUser(accountNumber, password);
+        if (result != null && StringUtils.isBlank(name)) {
+            modelAndView = new ModelAndView("updateUser");
+            return modelAndView;
+        }
+        userService.updateUser(name, phone, email, user);
+        modelAndView = new ModelAndView("redirect:getUser");
         return modelAndView;
     }
 

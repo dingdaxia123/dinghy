@@ -20,6 +20,21 @@
                 <comment>密码</comment>
             </column>
         </property>
+        <property name="accountNumber">
+            <column name="ACCOUNTNUMBER">
+                <comment>账号</comment>
+            </column>
+        </property>
+        <property name="email">
+            <column name="EMAIL">
+                <comment>邮箱</comment>
+            </column>
+        </property>
+        <property name="phone">
+            <column name="PHONE">
+                <comment>电话号码</comment>
+            </column>
+        </property>
         <property name="createTime">
             <column name="CREATETIME">
                 <comment>创建时间</comment>

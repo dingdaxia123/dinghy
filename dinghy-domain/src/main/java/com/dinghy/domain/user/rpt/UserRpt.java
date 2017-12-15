@@ -10,7 +10,7 @@ import java.util.List;
 public interface UserRpt {
     void put(User user);
 
-    User getUser(String name, String password);
+    User getUser(String accountNumber, String password);
 
     void delete(User user);
 
