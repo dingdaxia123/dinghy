@@ -36,7 +36,7 @@
 <!--Logo区域开始-->
 <div id="header">
   <%--<img src="/static/images/logo.png" alt="logo" class="left"/>--%>
-  <a href="#">[退出]</a>
+  <a href="main">[退出]</a>
 </div>
 <!--Logo区域结束-->
 <!--导航区域开始-->
@@ -61,26 +61,26 @@
   <div id="save_result_info" class="save_success">保存成功！</div><!--保存失败，数据并发错误！-->
   <form action="updateUser" method="post" class="main_form" name="Form" id="Form">
     <div class="text_info clearfix"><span>账号：</span></div>
-    <div class="input_info"><input type="text" class="readonly" value="${user.accountNumber}" /></div>
+    <div class="input_info"><input type="text" class="readonly" value="${user.accountNumber}" name="accountNumber"/></div>
     <div class="text_info clearfix"><span>角色：</span></div>
     <div class="input_info">
-      <input type="text"  class="readonly width400" value="${user.level}" />
+      <input type="text"  class="readonly width400" readonly="readonly" value="${user.level}" />
     </div>
     <div class="text_info clearfix"><span>姓名：</span></div>
     <div class="input_info">
-      <input type="text"  class="readonly" value="${user.name}" />
+      <input type="text"  name="name" class="readonly" value="${user.name}" />
       <%--<span class="required">*</span>--%>
       <div class="validate_msg_long error_msg">20长度以内的汉字、字母的组合</div>
     </div>
     <div class="text_info clearfix"><span>电话：</span></div>
     <div class="input_info">
-      <input type="text" class="width200"  class="readonly" value="${user.phone}" />
+      <input type="text" name="phone" class="width200"  class="readonly" value="${user.phone}" />
       <div class="validate_msg_medium">电话号码格式：手机或固话</div>
     </div>
     <div class="text_info clearfix" ><span>Email：</span></div>
     <div class="input_info">
-      <input type="text" class="width200"  class="readonly" value="${user.email}" />
-      <%--<div class="validate_msg_medium">50长度以内，符合 email 格式</div>--%>
+      <input type="text" name="email" class="width200"  class="readonly" value="${user.email}" />
+      <div class="validate_msg_medium">50长度以内，符合 email 格式</div>
     </div>
     <div class="text_info clearfix"><span>创建时间：</span></div>
     <div class="input_info"><input type="text" readonly="readonly" class="readonly" value="${user.createTime}"/></div>

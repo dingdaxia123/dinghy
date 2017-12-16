@@ -10,7 +10,7 @@
                 <param name="sequence">dhy_user_seq</param>
             </generator>
         </id>
-        <property name="name" unique="false">
+        <property name="name">
             <column name="NAME">
                 <comment>姓名</comment>
             </column>
@@ -20,7 +20,7 @@
                 <comment>密码</comment>
             </column>
         </property>
-        <property name="accountNumber">
+        <property name="accountNumber" unique="true">
             <column name="ACCOUNTNUMBER">
                 <comment>账号</comment>
             </column>
