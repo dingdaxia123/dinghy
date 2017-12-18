@@ -6,6 +6,10 @@
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" %>
+<%
+    String path = request.getContextPath();
+    String basePath = request.getScheme() + "://" + request.getServerName() + ":" + request.getServerPort() + path + "/";
+%>
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -39,7 +43,7 @@
             <tr>
                 <td class="login_info">验证码：</td>
                 <td class="width70"><input name="" type="text" class="width70"/></td>
-                <td><img id="img" src="/index/check" onclick="refresh()" alt="验证码" title="点击更换" /></td>
+                <td><img id="img" src="<%=basePath%>/check" onclick="refresh()" alt="验证码" title="点击更换"/></td>
                 <td><span class="required"></span></td>
             </tr>
             <tr>
@@ -57,8 +61,8 @@
 
 <script>
     function refresh() {
-        var url = $("#basePath").val() + "check.jpg?number="+Math.random();
-        $("#img").attr("src",url);
+        var url = $("#basePath").val() + "check.jpg?number=" + Math.random();
+        $("#img").attr("src", url);
     }
 </script>
 </body>
