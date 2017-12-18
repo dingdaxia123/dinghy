@@ -44,16 +44,22 @@ public class UserController {
     }
 
     @RequestMapping("login")
-    public String login(String accountNumber, String password, HttpServletRequest request, HttpSession httpSession) {
+    public String login(String accountNumber, String password, HttpServletRequest request, HttpSession httpSession, String yanZ) {
         User user = userService.getUser(accountNumber, password);
+        String toUpperCase = null;
         httpSession.setAttribute("user", user);
+        String code = (String) request.getSession().getAttribute("validateCode");
+        if (yanZ != null) {
+            toUpperCase = yanZ.toUpperCase();
+        }
+
         String CharacterEncoding = "UTF-8";
         try {
             request.setCharacterEncoding(CharacterEncoding);
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        if (user != null) {
+        if (user != null && toUpperCase.equals(code)) {
             logger.info("success:µÇÂ¼³É¹¦£¡");
             return "redirect:main";
         } else {

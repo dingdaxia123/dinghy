@@ -17,6 +17,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global.css"/>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global_color.css"/>
+    <base href="<%=basePath%>">
 </head>
 <body class="index">
 
@@ -25,9 +26,9 @@
 <%--<input type="submit" name="b1" value="Payment">--%>
 <%--<a href="/index/register">注册</a>--%>
 <div id="header">
-    <a href="register">[注册]</a>
+    <a href="index/register">[注册]</a>
 </div>
-<form action="login" method="post">
+<form action="/index/login" method="post">
     <div class="login_box">
         <table>
             <tr>
@@ -42,8 +43,11 @@
             </tr>
             <tr>
                 <td class="login_info">验证码：</td>
-                <td class="width70"><input name="" type="text" class="width70"/></td>
-                <td><img id="img" src="<%=basePath%>/check" onclick="refresh()" alt="验证码" title="点击更换"/></td>
+                <td class="width70"><input name="yanZ" type="text" class="width70"/></td>
+                <td><img id="imgObj" src="index/verifyCode" onclick="this.src=this.src+'?'" alt="验证码" title="点击更换"/>
+                    </td>
+                <td><a href="javascript:imgObj.onclick()">换一张</a></td>
+                <%--<input type="button" value="验证" onclick="isRightCode()"/>--%>
                 <td><span class="required"></span></td>
             </tr>
             <tr>
@@ -59,11 +63,44 @@
     </div>
 </form>
 
-<script>
-    function refresh() {
-        var url = $("#basePath").val() + "check.jpg?number=" + Math.random();
-        $("#img").attr("src", url);
+<script type="text/javascript">
+    //    function refresh() {
+    //        var url = $("#basePath").val()  + "check.jpg?number=" + Math.random();
+    //        $("#img").attr("src", url);
+    //    }
+
+    function changeImg() {
+        var imgSrc = $("#imgObj");
+        var src = imgSrc.attr("src");
+        imgSrc.attr("src", chgUrl(src));
     }
+
+    //时间戳
+    //为了使每次生成图片不一致，即不让浏览器读缓存，所以需要加上时间戳
+    function chgUrl(url) {
+        var timestamp = (new Date()).valueOf();
+        urlurl = url.substring(0, 17);
+        if ((url.indexOf("&") >= 0)) {
+            urlurl = url + "×tamp=" + timestamp;
+        } else {
+            urlurl = url + "?timestamp=" + timestamp;
+        }
+        return url;
+    }
+
+    //    function isRightCode(){
+    //        var code = $("#veryCode").attr("value");
+    //        code = "c=" + code;
+    //        $.ajax({
+    //            type:"POST",
+    //            url:"resultServlet/validateCode",
+    //            data:code,
+    //            success:callback
+    //        });
+    //    }
+    //    function callback(data){
+    //        $("#info").html(data);
+    //    }
 </script>
 </body>
 </html>

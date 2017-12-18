@@ -17,7 +17,7 @@
             <mvc:exclude-mapping path="/index/login"/>
             <mvc:exclude-mapping path="/index/register"/>
             <mvc:exclude-mapping path="/index/payAdviceUrl"/>
-            <mvc:exclude-mapping path="/index/check.jpg"/>
+            <mvc:exclude-mapping path="/index/verifyCode"/>
             <bean class="com.dinghy.web.interceptor.FirstInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
