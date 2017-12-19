@@ -34,6 +34,9 @@
                 <column name="STATUS">
                     <comment>状态</comment>
                 </column>
+                <type name="org.hibernate.type.EnumType">
+                    <param name="enumClass">com.dinghy.domain.cost.CostStatus</param>
+                </type>
             </property>
             <property name="descr">
                 <column name="DESCR">
@@ -54,6 +57,9 @@
                 <column name="COST_TYPE">
                     <comment>资费类型</comment>
                 </column>
+                <type name="org.hibernate.type.EnumType">
+                    <param name="enumClass">com.dinghy.domain.cost.CostType</param>
+                </type>
             </property>
 
         </class>

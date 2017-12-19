@@ -13,4 +13,6 @@ public interface CostService {
      */
     String getCost(String name);
 
+    String saveCost(String name, String baseDuration, String baseCost, String unitCost, String descr, String type);
+
 }

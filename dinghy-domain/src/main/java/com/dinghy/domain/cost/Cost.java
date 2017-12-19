@@ -9,15 +9,23 @@ import java.util.Date;
 public class Cost implements Serializable{
     private Long id;// 主键
     private String name;// 资费名称
-    private Integer baseDuration;// 在线时长
-    private Double baseCost;// 基本费用
-    private Double unitCost;// 单位费用
-    private String status;// 状态
+    private String baseDuration;// 在线时长
+    private String baseCost;// 基本费用
+    private String unitCost;// 单位费用
+    private CostStatus status = CostStatus.Close ;// 状态
     private String descr;// 资费说明
-    private Date createTime;// 创建日期
-    private Date startTime;// 启用日期
-    private String costType;// 资费类型
+    private Date createTime = new Date();// 创建日期
+    private Date startTime = new Date();// 启用日期
+    private CostType costType;// 资费类型
 
+    public Cost(String descr, String unitCost, String baseCost, String baseDuration, String name, CostType costType) {
+        this.descr = descr;
+        this.unitCost = unitCost;
+        this.baseCost = baseCost;
+        this.baseDuration = baseDuration;
+        this.name = name;
+        this.costType = costType;
+    }
 
     public Cost(){}
 
@@ -34,35 +42,35 @@ public class Cost implements Serializable{
         this.name = name;
     }
 
-    public Integer getBaseDuration() {
+    public String getBaseDuration() {
         return baseDuration;
     }
 
-    public void setBaseDuration(Integer baseDuration) {
+    public void setBaseDuration(String baseDuration) {
         this.baseDuration = baseDuration;
     }
 
-    public Double getBaseCost() {
+    public String getBaseCost() {
         return baseCost;
     }
 
-    public void setBaseCost(Double baseCost) {
+    public void setBaseCost(String baseCost) {
         this.baseCost = baseCost;
     }
 
-    public Double getUnitCost() {
+    public String getUnitCost() {
         return unitCost;
     }
 
-    public void setUnitCost(Double unitCost) {
+    public void setUnitCost(String unitCost) {
         this.unitCost = unitCost;
     }
 
-    public String getStatus() {
+    public CostStatus getStatus() {
         return status;
     }
 
-    public void setStatus(String status) {
+    public void setStatus(CostStatus status) {
         this.status = status;
     }
 
@@ -90,11 +98,11 @@ public class Cost implements Serializable{
         this.startTime = startTime;
     }
 
-    public String getCostType() {
+    public CostType getCostType() {
         return costType;
     }
 
-    public void setCostType(String costType) {
+    public void setCostType(CostType costType) {
         this.costType = costType;
     }
 }
