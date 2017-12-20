@@ -60,7 +60,7 @@ public class UserController {
             e.printStackTrace();
         }
         if (user != null && toUpperCase.equals(code)) {
-            logger.info("success:ï¿½ï¿½Â¼ï¿½É¹ï¿½ï¿½ï¿½");
+            logger.info("success:µÇÂ¼³É¹¦");
             return "redirect:main";
         } else {
             return "login";
@@ -74,12 +74,12 @@ public class UserController {
         if (result.equals(UserResult.Success.getText())) {
             modelAndView = new ModelAndView("redirect:login");
             modelAndView.addObject("result", result);
-            logger.info("success:ï¿½Ã»ï¿½ï¿½ï¿½ï¿½ï¿½É¹ï¿½");
+            logger.info("success:ÓÃ»§´¢´æ³É¹¦?");
             return modelAndView;
         } else if (result.equals(UserResult.NameRepeat.getText())) {
             modelAndView = new ModelAndView("register");
             modelAndView.addObject("result", result);
-            logger.error("error:ï¿½Ã»ï¿½ï¿½Ñ´ï¿½ï¿½ï¿½");
+            logger.error("error:ÓÃ»§ÒÑ´æÔÚ");
             return modelAndView;
         } else {
             modelAndView = new ModelAndView("register");
@@ -140,14 +140,16 @@ public class UserController {
 
     @RequestMapping("updatePwd")
     public ModelAndView updatePwd(HttpServletRequest request, String password2,String password1 ) {
+        /**
+         * password1Ò³ÃæÉÏÊäÈëµÄ¾ÉÃÜÂë£¬passwordÒ³ÃæÉÏÊäÈëµÄÐÂÃÜÂë¡£jsÒ³ÃæÒÑ¾­ÅÐ¶ÏÐÂÃÜÂëÊäÈëÊÇ·ñÒ»ÖÂ
+         */
         ModelAndView modelAndView;
         User user = (User) request.getSession().getAttribute("user");
-        String password = user.getPassword();
+        String password = user.getPassword();//user×îÔ­Ê¼ÃÜÂë
         if (password.equals(password1)) {
             userService.updatePwd(password2, user);
             modelAndView = new ModelAndView("redirect:main");
             return modelAndView;
-
         }
         modelAndView = new ModelAndView("user_modi_pwd");
         return modelAndView;
@@ -161,15 +163,15 @@ public class UserController {
 
     @RequestMapping("/check")
     public void createCode(HttpServletRequest request, HttpServletResponse response) throws IOException {
-        // Í¨Öªï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Òªï¿½ï¿½ï¿½ï¿½
+        // Í¨Öªä¯ÀÀÆ÷²»Òª»º´æ
         response.setHeader("Expires", "-1");
         response.setHeader("Cache-Control", "no-cache");
         response.setHeader("Pragma", "-1");
         CaptchaUtil util = CaptchaUtil.Instance();
-        // ï¿½ï¿½ï¿½ï¿½Ö¤ï¿½ï¿½ï¿½ï¿½ï¿½ëµ½sessionï¿½Ð£ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ö¤
+        // ½«ÑéÖ¤ÂëÊäÈëµ½sessionÖÐ£¬ÓÃÀ´ÑéÖ¤
         String code = util.getString();
         request.getSession().setAttribute("code", code);
-        // ï¿½ï¿½ï¿½ï¿½ï¿½webÒ³ï¿½ï¿½
+        // Êä³ö´òwebÒ³Ãæ
         ImageIO.write(util.getImage(), "jpg", response.getOutputStream());
     }
 
@@ -179,9 +181,9 @@ public class UserController {
         logger.debug("debug level");
         logger.info("info level");
         logger.warn("warn level");
-        logger.error("error levelï¿½ï¿½ AAAA");
+        logger.error("error level°¡ AAAA");
         logger.fatal("fatal level");
-        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+        System.out.println("°¡°¡µÄ");
     }
 
 }
