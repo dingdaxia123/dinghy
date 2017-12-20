@@ -145,7 +145,7 @@ public class UserController {
          */
         ModelAndView modelAndView;
         User user = (User) request.getSession().getAttribute("user");
-        String password = user.getPassword();//user最原始密码
+        String password = user.getPassword();//user里获取的原始密码
         if (password.equals(password1)) {
             userService.updatePwd(password2, user);
             modelAndView = new ModelAndView("redirect:main");

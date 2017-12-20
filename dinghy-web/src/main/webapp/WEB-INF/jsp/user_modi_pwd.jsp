@@ -15,7 +15,7 @@
 </head>
 <body>
 <script language="javascript" type="text/javascript">
-    //判断页面上输入的新密码是否一致
+    //判断页面上输入的新密码和重复是否一致
     function insertManager() {
         var divResult = document.getElementById("save_result_info");
         var password2 = document.getElementById("password2").value;
