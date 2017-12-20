@@ -22,7 +22,7 @@ import java.util.List;
 @RequestMapping("index")
 public class CostController {
 
-    private List<Cost> costList;
+//    private List<Cost> costList;
     private int page=1;
     private int pageSize=4;
     private int totalPage;
@@ -47,10 +47,11 @@ public class CostController {
     }
 
     @RequestMapping("fee_list")
-    public ModelAndView listCost() {
+    public ModelAndView listCost(String page1) {
         ModelAndView modelAndView = new ModelAndView("fee_list");
 //        List<Cost> costList = costRpt.findAll();
-        costList=costRpt.findByPage(page, pageSize);
+        List<Cost> costList= costRpt.findByPage(page, pageSize);
+        modelAndView.addObject("costList", costList);
         totalPage=costRpt.findTotalPage(pageSize);
         return modelAndView;
     }

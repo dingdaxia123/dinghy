@@ -52,7 +52,7 @@ public class CostRptImpl extends Hibernate implements CostRpt {
              * 由Spring负责管理,不需要我们创建和关闭
              */
             @Override
-            public Object doInHibernate(Session session) throws HibernateException, SQLException {
+            public List<Object> doInHibernate(Session session) throws HibernateException, SQLException {
                 String hql="from Cost";
                 Query query=session.createQuery(hql);
                 /**
