@@ -21,26 +21,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public String save(String name, String password, String phone, String email, String accountNumber) {
-        if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password) && StringUtils.isNotBlank(accountNumber)){
+        if (StringUtils.isNotBlank(name) && StringUtils.isNotBlank(password) && StringUtils.isNotBlank(accountNumber)) {
             List<User> userList = userRpt.findUser(accountNumber);
-            if(userList.size() == 0 || userList == null){
+            if (userList.size() == 0 || userList == null) {
                 User user = new User(name, password, phone, email, accountNumber);
                 userRpt.put(user);
                 return UserResult.Success.getText();
-            }else {
+            } else {
                 return UserResult.NameRepeat.getText();
             }
-        }else {
+        } else {
             return UserResult.ParamNull.getText();
         }
     }
 
     @Override
     public User getUser(String accountNumber, String password) {
-        if(StringUtils.isNotBlank(accountNumber) && StringUtils.isNotBlank(password)) {
+        if (StringUtils.isNotBlank(accountNumber) && StringUtils.isNotBlank(password)) {
             User user = userRpt.getUser(accountNumber, password);
             return user;
-        }else {
+        } else {
             return null;
         }
 
@@ -70,12 +70,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updateUser(String name, String phone, String email, User user) {
-        if(StringUtils.isNotBlank(name) && StringUtils.isNotBlank(email) && StringUtils.isNotBlank(phone) && user !=null) {
+        if (StringUtils.isNotBlank(name) && StringUtils.isNotBlank(email) && StringUtils.isNotBlank(phone) && user != null) {
             user.setEmail(email);
             user.setName(name);
             user.setPhone(phone);
             userRpt.put(user);
         }
     }
+
+    @Override
+    public void updatePwd(String password, User user) {
+        if(StringUtils.isNotBlank(password) && user != null){
+            user.setPassword(password);
+            userRpt.put(user);
+        }
+
+    }
+
 
 }

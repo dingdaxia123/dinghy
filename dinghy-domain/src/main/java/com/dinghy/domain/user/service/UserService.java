@@ -18,4 +18,8 @@ public interface UserService {
 
     void updateUser(String name, String phone, String email, User user);
 
+    void updatePwd(String password,User user);
+
+
+
 }

@@ -31,7 +31,7 @@
         <li><a href="bill/bill_list.html" class="bill_off"></a></li>
         <li><a href="report/report_list.html" class="report_off"></a></li>
         <li><a href="getUser" class="information_off"></a></li>
-        <li><a href="user/user_modi_pwd.html" class="password_off"></a></li>
+        <li><a href="updatePwd" class="password_off"></a></li>
     </ul>
 </div>
 </body>

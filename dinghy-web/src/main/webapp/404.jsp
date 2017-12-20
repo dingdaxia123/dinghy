@@ -9,7 +9,7 @@
 <%--<div class="wrapper_error">--%>
     <%--<p class="error_1"></p>--%>
     <%--<p class="return"><a href="#" class="return1">返回上一页</a>或<a href="#" class="return2">返回网站首页</a></p>--%>
-<h1>400</h1>
+<h1>404</h1>
 <%--</div>--%>
 </body>
 </html>
