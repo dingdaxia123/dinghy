@@ -19,8 +19,8 @@
     function insertManager() {
         var divResult = document.getElementById("save_result_info");
         var password2 = document.getElementById("password2").value;
-        var password1 = document.getElementById("password1").value;
-        if (password1 != password2) {
+        var password3 = document.getElementById("password3").value;
+        if (password2 != password3) {
             window.alert("您输入的密码与确认密码确认不一致");
             divResult.style.display = "none";
             Form.password1.focus();
@@ -61,19 +61,19 @@
     <form action="updatePwd" method="post" class="main_form" name="Form" id="Form">
         <div class="text_info clearfix"><span>旧密码：</span></div>
         <div class="input_info">
-            <input name="password1" type="password" class="width200"/><span class="required">*</span>
+            <input name="password1" type="password" class="width200" value=""/><span class="required">*</span>
 
             <div class="validate_msg_medium">30长度以内的字母、数字和下划线的组合</div>
         </div>
         <div class="text_info    clearfix"><span>新密码：</span></div>
         <div class="input_info">
-            <input type="password" name="password2" class="width200"/><span class="required">*</span>
+            <input type="password" name="password2" class="width200" id="password2" value=""/><span class="required">*</span>
 
             <div class="validate_msg_medium">30长度以内的字母、数字和下划线的组合</div>
         </div>
         <div class="text_info clearfix"><span>重复新密码：</span></div>
         <div class="input_info">
-            <input type="password" class="width200" name="password3"/><span class="required">*</span>
+            <input type="password" class="width200" name="password3" id="password3" value=""/><span class="required">*</span>
 
             <div class="validate_msg_medium">两次新密码必须相同</div>
         </div>
