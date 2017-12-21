@@ -3,18 +3,16 @@ package com.dinghy.domain.util;
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * @Author:xgchen
- * @Date:2015-02-15 15:12
- * @Version: V0.0.1
- */
 public class Pagination {
     private long totalCount = 0;
     private int pageSize = 10;
-    private int pageNO = 1;
-    private List<?> list = new ArrayList<Object>(0);
+    private int pageNo = 1;
+    private List<?> list = new ArrayList(0);
     private int totalPage = 0;
-    private String totalAmount;
+
+    public void setTotalPage(int totalPage) {
+        this.totalPage = totalPage;
+    }
 
     public long getTotalCount() {
         return totalCount;
@@ -22,10 +20,8 @@ public class Pagination {
 
     public void setTotalCount(long totalCount) {
         if (totalCount == 0) {
-            this.pageNO = 0;
+            this.pageNo = 0;
             this.totalPage = 0;
-        } else {
-            this.totalPage = (((Long) totalCount).intValue() - 1) / pageSize + 1;
         }
         this.totalCount = totalCount;
     }
@@ -38,16 +34,15 @@ public class Pagination {
         this.pageSize = pageSize;
     }
 
-    public int getPageNO() {
-        return pageNO;
+    public int getPageNo() {
+        return pageNo;
     }
 
-    public void setPageNO(int pageNO) {
-        if (pageNO <= 0) pageNO = 1;
-        this.pageNO = pageNO;
+    public void setPageNo(int pageNo) {
+        this.pageNo = pageNo;
     }
 
-    public List getList() {
+    public List<?> getList() {
         return list;
     }
 
@@ -62,22 +57,18 @@ public class Pagination {
         return totalPage;
     }
 
-    public void setTotalPage(int totalPage) {
-        this.totalPage = totalPage;
-    }
-
     /**
      * 是否第一页
      */
     public boolean isFirstPage() {
-        return pageNO <= 1;
+        return pageNo <= 1;
     }
 
     /**
      * 是否最后一页
      */
     public boolean isLastPage() {
-        return pageNO >= getTotalPage();
+        return pageNo >= getTotalPage();
     }
 
     /**
@@ -85,9 +76,9 @@ public class Pagination {
      */
     public int getNextPage() {
         if (isLastPage()) {
-            return pageNO;
+            return pageNo;
         } else {
-            return pageNO + 1;
+            return pageNo + 1;
         }
     }
 
@@ -96,17 +87,9 @@ public class Pagination {
      */
     public int getPrePage() {
         if (isFirstPage()) {
-            return pageNO;
+            return pageNo;
         } else {
-            return pageNO - 1;
+            return pageNo - 1;
         }
-    }
-
-    public String getTotalAmount() {
-        return totalAmount;
-    }
-
-    public void setTotalAmount(String totalAmount) {
-        this.totalAmount = totalAmount;
     }
 }

@@ -7,6 +7,7 @@
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="page" tagdir="/WEB-INF/tags" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -89,17 +90,17 @@
                     <th class="width200"></th>
                 </tr>
                 <c:choose>
-                    <c:when test="${not empty costList}">
-                        <c:forEach items="${costList}" var="user" varStatus="vs">
+                    <c:when test="${not empty pag}">
+                        <c:forEach items="${pag.list}" var="list" varStatus="vs">
                             <tr>
                                 <td>${vs.index+1}</td>
-                                <td><a href="fee_detail.html">${user.name}</a></td>
-                                <td>${user.baseDuration}</td>
-                                <td>${user.baseCost}</td>
-                                <td>${user.unitCost}</td>
-                                <td>${user.createTime}</td>
-                                <td>${user.startTime}</td>
-                                <td>${user.status}</td>
+                                <td><a href="fee_detail.html">${list.name}</a></td>
+                                <td>${list.baseDuration}</td>
+                                <td>${list.baseCost}</td>
+                                <td>${list.unitCost}</td>
+                                <td>${list.createTime}</td>
+                                <td>${list.startTime}</td>
+                                <td>${list.status}</td>
                                 <td>
                                     <input type="button" value="启用" class="btn_start" onclick="startFee();"/>
                                     <input type="button" value="修改" class="btn_modify"
@@ -111,6 +112,7 @@
                     </c:when>
                 </c:choose>
             </table>
+            <div><page:page page="${pager}" info="true" pagenum="5" url="fee_list"/></div>
             <p>业务说明：<br/>
                 1、创建资费时，状态为暂停，记载创建时间；<br/>
                 2、暂停状态下，可修改，可删除；<br/>

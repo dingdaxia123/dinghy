@@ -4,6 +4,8 @@ package com.dinghy.web.controller;
 import com.dinghy.domain.cost.Cost;
 import com.dinghy.domain.cost.rpt.CostRpt;
 import com.dinghy.domain.cost.service.CostService;
+import com.dinghy.domain.util.CommonService;
+import com.dinghy.domain.util.Pagination;
 import com.dinghy.domain.util.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
@@ -23,9 +25,9 @@ import java.util.List;
 public class CostController {
 
 //    private List<Cost> costList;
-    private int page=1;
+    private int pageNo=1;
     private int pageSize=4;
-    private int totalPage;
+//    private int totalPage;
 
     @Resource
     private CostService costService;
@@ -47,12 +49,12 @@ public class CostController {
     }
 
     @RequestMapping("fee_list")
-    public ModelAndView listCost(String page1) {
+    public ModelAndView listCost() {
         ModelAndView modelAndView = new ModelAndView("fee_list");
-//        List<Cost> costList = costRpt.findAll();
-        List<Cost> costList= costRpt.findByPage(page, pageSize);
-        modelAndView.addObject("costList", costList);
-        totalPage=costRpt.findTotalPage(pageSize);
+        List<Cost> costList = costRpt.findAll();
+        Pagination pag = new Pagination();
+        pag.setList(costList);
+        modelAndView.addObject("pag", pag);
         return modelAndView;
     }
 
