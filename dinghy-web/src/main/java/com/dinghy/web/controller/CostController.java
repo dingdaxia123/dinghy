@@ -25,8 +25,8 @@ import java.util.List;
 public class CostController {
 
 //    private List<Cost> costList;
-    private int pageNo=1;
-    private int pageSize=4;
+//    private int pageNo=1;
+//    private int pageSize=4;
 //    private int totalPage;
 
     @Resource
@@ -49,12 +49,30 @@ public class CostController {
     }
 
     @RequestMapping("fee_list")
-    public ModelAndView listCost() {
+    public ModelAndView listCost(String page) {
+        List<Cost> costList;
         ModelAndView modelAndView = new ModelAndView("fee_list");
-        List<Cost> costList = costRpt.findAll();
+        if (page != null) {
+            costList = costRpt.findByPage(Integer.valueOf(page), 1);
+        } else {
+            costList = costRpt.findByPage(1, 1);
+        }
         Pagination pag = new Pagination();
         pag.setList(costList);
-        modelAndView.addObject("pag", pag);
+        pag.setTotalCount(costList.size());
+//        if (costList.size() / pag.getPageSize() == 0)
+//            pag.setTotalPage(costList.size() / pag.getPageSize());
+//        else
+//            pag.setTotalPage(costList.size() / pag.getPageSize() + 1);
+//        if (page != null) {
+//            pag.setPageNo(Integer.valueOf(page));
+//        }
+        pag.setTotalPage(costRpt.findTotalPage(1));
+        pag.setPageNo(Integer.valueOf(page));
+
+        int tot = pag.getTotalPage();
+
+        modelAndView.addObject("pager", pag);
         return modelAndView;
     }
 

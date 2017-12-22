@@ -106,25 +106,25 @@
 	</c:if>
 
 	<script type="text/javascript">
-	$(function(){
-		$('body').append('<form method="post" id="studio_page_form"></form>');
-		 studio_open_url=function(url) {
-			$('#studio_page_form').html('');
-			var arr = url.split('?');
-			$('#studio_page_form').attr('action',arr[0]);
-			if (arr[1]) {
-				var params = arr[1].split('&');
-				for ( var index in params) {
-					var item = params[index];
-					var pair = item.split('=');
-					var key = pair[0];
-					var val = pair[1] ? pair[1] : '';
-					var hidden = '<input type="hidden" name="'+key+'" value="'+val+'"/>';
-					$('#studio_page_form').append(hidden);
+		$(function(){
+			$('body').append('<form method="post" id="studio_page_form"></form>');
+			studio_open_url=function(url) {
+				$('#studio_page_form').html('');
+				var arr = url.split('?');
+				$('#studio_page_form').attr('action',arr[0]);
+				if (arr[1]) {
+					var params = arr[1].split('&');
+					for ( var index in params) {
+						var item = params[index];
+						var pair = item.split('=');
+						var key = pair[0];
+						var val = pair[1] ? pair[1] : '';
+						var hidden = '<input type="hidden" name="'+key+'" value="'+val+'"/>';
+						$('#studio_page_form').append(hidden);
+					}
 				}
-			}
-			$('#studio_page_form').submit();
-		};
-	});
+				$('#studio_page_form').submit();
+			};
+		});
 	</script>
 </div>

@@ -8,9 +8,11 @@
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ taglib prefix="page" tagdir="/WEB-INF/tags" %>
+<c:set var="ctx" value="${pageContext.request.contextPath}"></c:set>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
+    <%--<%@ include file="../jsp/top.jsp" %>--%>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
     <title>资费列表</title>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global.css"/>
@@ -60,7 +62,7 @@
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
-    <form action="" method="">
+    <form action="fee_list" method="post">
         <!--排序-->
         <div class="search_add">
             <div>
@@ -72,7 +74,7 @@
         </div>
         <!--启用操作的操作提示-->
         <div id="operate_result_info" class="operate_success">
-            <img src="../images/close.png" onclick="this.parentNode.style.display='none';"/>
+            <img src="/static/images/close.png" onclick="this.parentNode.style.display='none';"/>
             删除成功！
         </div>
         <!--数据区域：用表格展示数据-->
@@ -90,8 +92,8 @@
                     <th class="width200"></th>
                 </tr>
                 <c:choose>
-                    <c:when test="${not empty pag}">
-                        <c:forEach items="${pag.list}" var="list" varStatus="vs">
+                    <c:when test="${not empty pager}">
+                        <c:forEach items="${pager.list}" var="list" varStatus="vs">
                             <tr>
                                 <td>${vs.index+1}</td>
                                 <td><a href="fee_detail.html">${list.name}</a></td>
@@ -110,18 +112,49 @@
                             </tr>
                         </c:forEach>
                     </c:when>
+                    <c:otherwise>
+                        <tr>
+                            <td colspan="100" class="center">没有相关数据</td>
+                        </tr>
+                    </c:otherwise>
                 </c:choose>
             </table>
-            <div><page:page page="${pager}" info="true" pagenum="5" url="fee_list"/></div>
-            <p>业务说明：<br/>
-                1、创建资费时，状态为暂停，记载创建时间；<br/>
-                2、暂停状态下，可修改，可删除；<br/>
-                3、开通后，记载开通时间，且开通后不能修改、不能再停用、也不能删除；<br/>
-                4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）
-            </p>
+
+            <%--<p>业务说明：<br/>--%>
+                <%--1、创建资费时，状态为暂停，记载创建时间；<br/>--%>
+                <%--2、暂停状态下，可修改，可删除；<br/>--%>
+                <%--3、开通后，记载开通时间，且开通后不能修改、不能再停用、也不能删除；<br/>--%>
+                <%--4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）--%>
+            <%--</p>--%>
         </div>
         <!--分页-->
-        <div>
+            <%--<div id="pages"><page:page page="${pager}" info="true" pagenum="5" url="${ctx}/index/fee_list"/></div>--%>
+        <div id="pages">
+            <c:if test="${pager.pageNo == 1}">
+                <a href="#">上一页</a>
+            </c:if>
+            <c:if test="${pager.pageNo != 1}">
+                <a href="fee_list?page=${pager.pageNo-1}">上一页</a>
+            </c:if>
+            <c:forEach  begin="${pager.pageNo}" end="${pager.totalPage}" var="p">
+                <%--<c:if test="">--%>
+
+                <%--</c:if>--%>
+                <%--<c:if test="${p != pager.pageNo}">--%>
+                    <%----%>
+                <%--</c:if>--%>
+                <c:choose>
+                    <c:when test="${p==pager.pageNo}"><a href="fee_list?page=${p}" class="current_page">${p}</a></c:when>
+                    <c:otherwise><a href="fee_list?page=${p}">${p}</a></c:otherwise>
+                </c:choose>
+            </c:forEach>
+
+            <c:if test="${pager.pageNo == pager.totalPage}">
+                <a href="#">下一页</a>
+            </c:if>
+            <c:if test="${pager.pageNo != pager.totalPage}">
+                <a href="fee_list?page=${pager.pageNo+1}">下一页</a>
+            </c:if>
         </div>
     </form>
 </div>
