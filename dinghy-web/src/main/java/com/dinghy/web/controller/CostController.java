@@ -75,5 +75,19 @@ public class CostController {
         modelAndView.addObject("pager", pag);
         return modelAndView;
     }
+    @RequestMapping("fee_modi")
+    public ModelAndView updateCost(int  id, String name, String baseDuration, String baseCost, String unitCost, String descr, String radFeeType) {
+        ModelAndView modelAndView;
+        if (StringUtils.isNotBlank(name)) {
+            modelAndView = new ModelAndView("fee_list");
+            Cost findCost = costRpt.findById(id);
+            String result = costService.saveCost(name, baseDuration, baseCost, unitCost, descr, radFeeType);
+            modelAndView.addObject("result", result);
+            return modelAndView;
+
+        }
+        modelAndView = new ModelAndView("fee_modi");
+        return  modelAndView;
+    }
 
 }
