@@ -15,7 +15,7 @@ public class Cost implements Serializable{
     private CostStatus status = CostStatus.Close ;// 状态
     private String descr;// 资费说明
     private Date createTime = new Date();// 创建日期
-    private Date startTime = new Date();// 启用日期
+    private Date startTime;// 启用日期
     private CostType costType;// 资费类型
 
     public Cost(String descr, String unitCost, String baseCost, String baseDuration, String name, CostType costType) {
