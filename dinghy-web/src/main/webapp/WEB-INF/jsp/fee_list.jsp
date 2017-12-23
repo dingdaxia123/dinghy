@@ -106,7 +106,7 @@
                                 <td>
                                     <input type="button" value="启用" class="btn_start" onclick="startFee();"/>
                                     <input type="button" value="修改" class="btn_modify"
-                                           onclick="location.href='fee_modi.html';"/>
+                                           onclick="location.href='fee_modi?id=${list.id}';"/>
                                     <input type="button" value="禁用" class="btn_delete" onclick="deleteFee();"/>
                                 </td>
                             </tr>
@@ -136,7 +136,7 @@
             <c:if test="${pager.pageNo != 1}">
                 <a href="fee_list?page=${pager.pageNo-1}">上一页</a>
             </c:if>
-            <c:forEach  begin="${pager.pageNo}" end="${pager.totalPage}" var="p">
+            <c:forEach  begin="1" end="${pager.totalPage}" var="p">
                 <%--<c:if test="">--%>
 
                 <%--</c:if>--%>

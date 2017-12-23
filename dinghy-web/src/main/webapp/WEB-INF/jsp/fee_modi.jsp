@@ -64,41 +64,41 @@
 <body>
 <!--Logo区域开始-->
 <div id="header">
-  <%--<img src="../images/logo.png" alt="logo" class="left"/>--%>
-    <a href="login">[退出]</a>
+  <img src="../images/logo.png" alt="logo" class="left"/>
+  <a href="#">[退出]</a>
 </div>
 <!--Logo区域结束-->
 <!--导航区域开始-->
-<%--<div id="navi">--%>
-  <%--<ul id="menu">--%>
-    <%--<li><a href="../index.html" class="index_off"></a></li>--%>
-    <%--<li><a href="../role/role_list.html" class="role_off"></a></li>--%>
-    <%--<li><a href="../admin/admin_list.html" class="admin_off"></a></li>--%>
-    <%--<li><a href="../fee/fee_list.html" class="fee_off"></a></li>--%>
-    <%--<li><a href="../account/account_list.html" class="account_off"></a></li>--%>
-    <%--<li><a href="../service/service_list.html" class="service_off"></a></li>--%>
-    <%--<li><a href="../bill/bill_list.html" class="bill_off"></a></li>--%>
-    <%--<li><a href="../report/report_list.html" class="report_off"></a></li>--%>
-    <%--<li><a href="getUser" class="information_off"></a></li>--%>
-    <%--<li><a href="updatePwd" class="password_off"></a></li>--%>
-  <%--</ul>--%>
-<%--</div>--%>
+<div id="navi">
+  <ul id="menu">
+    <li><a href="../index.html" class="index_off"></a></li>
+    <li><a href="../role/role_list.html" class="role_off"></a></li>
+    <li><a href="../admin/admin_list.html" class="admin_off"></a></li>
+    <li><a href="../fee/fee_list.html" class="fee_off"></a></li>
+    <li><a href="../account/account_list.html" class="account_off"></a></li>
+    <li><a href="../service/service_list.html" class="service_off"></a></li>
+    <li><a href="../bill/bill_list.html" class="bill_off"></a></li>
+    <li><a href="../report/report_list.html" class="report_off"></a></li>
+    <li><a href="../user/user_info.html" class="information_off"></a></li>
+    <li><a href="../user/user_modi_pwd.html" class="password_off"></a></li>
+  </ul>
+</div>
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
   <div id="save_result_info" class="save_success">保存成功！</div>
-  <form action="fee_modi" method="post" class="main_form">
-    <div class="text_info clearfix"  ><span>资费ID：</span></div>
-    <div class="input_info"><input type="text" name="id" class="readonly" readonly value="1" /></div>
+  <form action="fee_modi" method="" class="main_form">
+    <div class="text_info clearfix"><span>资费ID：</span></div>
+    <div class="input_info"><input type="text" class="readonly" readonly value="${id}" /></div>
     <div class="text_info clearfix"><span>资费名称：</span></div>
     <div class="input_info">
-      <input type="text" class="width300" value="包 20 小时"/>
+      <input type="text" class="width300" value="${name}" name="name"/>
       <span class="required">*</span>
       <div class="validate_msg_short">50长度的字母、数字、汉字和下划线的组合</div>
     </div>
     <div class="text_info clearfix"><span>资费类型：</span></div>
     <div class="input_info fee_type">
-      <input type="radio" name="radFeeType" id="monthly" onclick="feeTypeChange(1);" />
+      <input type="radio" name="radFeeType" id="monthly" onclick="feeTypeChange(1);" value="${radFeeType}" />
       <label for="monthly">包月</label>
       <input type="radio" name="radFeeType" checked="checked" id="package" onclick="feeTypeChange(2);" />
       <label for="package">套餐</label>
@@ -107,14 +107,14 @@
     </div>
     <div class="text_info clearfix"><span>基本时长：</span></div>
     <div class="input_info">
-      <input type="text" value="" class="width100" />
+      <input type="text" value="${baseDuration}" class="width100" />
       <span class="info">小时</span>
       <span class="required">*</span>
       <div class="validate_msg_long">1-600之间的整数</div>
     </div>
     <div class="text_info clearfix"><span>基本费用：</span></div>
     <div class="input_info">
-      <input type="text" value="" class="width100" />
+      <input type="text" value="baseCost" class="width100" name="baseCost"/>
       <span class="info">元</span>
       <span class="required">*</span>
       <div class="validate_msg_long">0-99999.99之间的数值</div>
@@ -128,7 +128,7 @@
     </div>
     <div class="text_info clearfix"><span>资费说明：</span></div>
     <div class="input_info_high">
-      <textarea class="width300 height70">没有启用的资费，可以修改除 ID 以外的所有信息</textarea>
+      <textarea class="width300 height70"name="descr">${descr}</textarea>
       <div class="validate_msg_short">100长度的字母、数字、汉字和下划线的组合</div>
     </div>
     <div class="button_info clearfix">
@@ -139,9 +139,9 @@
 </div>
 <!--主要区域结束-->
 <div id="footer">
-  <span>[源自北美的技术，最优秀的师资，最真实的企业环境，最适用的实战项目]</span>
+  <p>[源自扬哥的技术，最优秀的扬哥资源，最真实的企业环境，最适用崽崽的实战项目]</p>
   <br />
-  <span>版权所有(C)加拿大达内IT培训集团公司 </span>
+  <p>版权所有(C)扬哥IT专训崽崽集团公司</p>
 </div>
 </body>
 </html>

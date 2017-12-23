@@ -105,4 +105,8 @@ public class Cost implements Serializable{
     public void setCostType(CostType costType) {
         this.costType = costType;
     }
+
+    public Long getId() {
+        return id;
+    }
 }

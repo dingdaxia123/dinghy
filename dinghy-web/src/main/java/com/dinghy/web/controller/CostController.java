@@ -68,7 +68,9 @@ public class CostController {
 //            pag.setPageNo(Integer.valueOf(page));
 //        }
         pag.setTotalPage(costRpt.findTotalPage(1));
-        pag.setPageNo(Integer.valueOf(page));
+        if(page != null){
+            pag.setPageNo(Integer.valueOf(page));
+        }
 
         int tot = pag.getTotalPage();
 
@@ -76,18 +78,25 @@ public class CostController {
         return modelAndView;
     }
     @RequestMapping("fee_modi")
-    public ModelAndView updateCost(int  id, String name, String baseDuration, String baseCost, String unitCost, String descr, String radFeeType) {
+    public ModelAndView updateCost(String id, String name, String baseDuration, String baseCost, String unitCost, String descr, String radFeeType) {
         ModelAndView modelAndView;
-        if (StringUtils.isNotBlank(name)) {
-            modelAndView = new ModelAndView("fee_list");
-            Cost findCost = costRpt.findById(id);
-            String result = costService.saveCost(name, baseDuration, baseCost, unitCost, descr, radFeeType);
-            modelAndView.addObject("result", result);
+        if (StringUtils.isNotBlank(id)) {
+            modelAndView = new ModelAndView("fee_modi");
+            modelAndView.addObject("id", id);
+            Cost cost = costRpt.findById(Long.valueOf(id));
+            modelAndView.addObject("name", cost.getName());
+            modelAndView.addObject("radFeeType", cost.getCostType().getText());
+            modelAndView.addObject("baseDuration", cost.getBaseDuration());
+            modelAndView.addObject("baseCost",cost.getBaseCost());
+            modelAndView.addObject("status",cost.getStatus().getText());
+            modelAndView.addObject("descr", cost.getDescr());
             return modelAndView;
 
+        }else {
+
+            return  null;
         }
-        modelAndView = new ModelAndView("fee_modi");
-        return  modelAndView;
+
     }
 
 }

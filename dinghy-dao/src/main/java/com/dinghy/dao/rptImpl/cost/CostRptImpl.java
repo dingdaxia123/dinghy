@@ -3,6 +3,7 @@ package com.dinghy.dao.rptImpl.cost;
 import com.dinghy.dao.hibernate.Hibernate;
 import com.dinghy.domain.cost.Cost;
 import com.dinghy.domain.cost.rpt.CostRpt;
+import com.dinghy.domain.user.User;
 import org.hibernate.HibernateException;
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -84,11 +85,12 @@ public class CostRptImpl extends Hibernate implements CostRpt {
     }
 
     @Override
-    public Cost findById(int id) {
-//        String hql="from Cost as c c.id=?";
-//        return (Cost) getHibernateTemplate().find(hql);
+    public Cost findById(Long id) {
+        String hql="from Cost where id=?";
+        List<Cost> list = (List<Cost>)getHibernateTemplate().find(hql,id);
+        return list.isEmpty()?null:(Cost)list.get(0);
         //使用延迟加载方法实现
-        return (Cost)getHibernateTemplate().load(Cost.class, id);
+//        return getHibernateTemplate().load(Cost.class, id);
     }
 
     @Override

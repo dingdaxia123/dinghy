@@ -33,7 +33,7 @@ public interface CostRpt {
      * @param id
      * @return
      */
-    Cost findById(int id);
+    Cost findById(Long id);
 
     /**
      * 保存修改资费
