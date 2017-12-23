@@ -2,6 +2,7 @@ package com.dinghy.web.controller;
 
 
 import com.dinghy.domain.cost.Cost;
+import com.dinghy.domain.cost.CostType;
 import com.dinghy.domain.cost.rpt.CostRpt;
 import com.dinghy.domain.cost.service.CostService;
 import com.dinghy.domain.util.CommonService;
@@ -14,6 +15,8 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -78,25 +81,42 @@ public class CostController {
         return modelAndView;
     }
     @RequestMapping("fee_modi")
-    public ModelAndView updateCost(String id, String name, String baseDuration, String baseCost, String unitCost, String descr, String radFeeType) {
+    public ModelAndView updateCost(String id, String name, String baseDuration, String baseCost,
+                                   String unitCost, String descr, String radFeeType, HttpServletRequest request,
+                                   HttpSession session) {
         ModelAndView modelAndView;
         if (StringUtils.isNotBlank(id)) {
             modelAndView = new ModelAndView("fee_modi");
             modelAndView.addObject("id", id);
             Cost cost = costRpt.findById(Long.valueOf(id));
+            session.setAttribute("cost", cost);
             modelAndView.addObject("name", cost.getName());
             modelAndView.addObject("radFeeType", cost.getCostType().getText());
             modelAndView.addObject("baseDuration", cost.getBaseDuration());
-            modelAndView.addObject("baseCost",cost.getBaseCost());
-            modelAndView.addObject("status",cost.getStatus().getText());
+            modelAndView.addObject("baseCost", cost.getBaseCost());
+            modelAndView.addObject("unitCost", cost.getUnitCost());
+            modelAndView.addObject("status", cost.getStatus().getText());
             modelAndView.addObject("descr", cost.getDescr());
             return modelAndView;
-
         }else {
-
-            return  null;
+            Cost cost = (Cost)request.getSession().getAttribute("cost");
+            if("1".equals(radFeeType)){
+                cost.setCostType(CostType.Monthly);
+                modelAndView = new ModelAndView("redirect:fee_list");
+                costRpt.put(cost);
+                return modelAndView;
+            }else if(radFeeType.equals("2")) {
+                cost.setCostType(CostType.Package);
+                modelAndView = new ModelAndView("redirect:fee_list");
+                costRpt.put(cost);
+                return modelAndView;
+            }else {
+                cost.setCostType(CostType.Time);
+                costRpt.put(cost);
+                modelAndView = new ModelAndView("redirect:fee_list");
+                return modelAndView;
+            }
         }
 
     }
-
 }
