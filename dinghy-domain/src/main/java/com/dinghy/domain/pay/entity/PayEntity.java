@@ -21,6 +21,7 @@ public class PayEntity{
             +"&"+"OrderTime="+orderTime+"&"+ "ReturnURL="+returnURL +"&"+"AdviceURL="+adviceURL+"&"+"zhuxiang" ;
     private String payType = "noCard";
     private String defaultBankNumber = "NOCARD";
+    private String remark="±¸×¢";
 
 
     private String signInfo = md5(pain);
@@ -116,5 +117,9 @@ public class PayEntity{
 
     public String getDefaultBankNumber() {
         return defaultBankNumber;
+    }
+
+    public String getRemark() {
+        return remark;
     }
 }

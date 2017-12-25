@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC
+        "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-access="field">
+    <class name="com.dinghy.domain.pay.PayOrder" table="dhy_payOrder">
+        <id name="id" type="java.lang.Long" column="dhy_payOrder_id">
+            <!-- 用来指明主键的生成方式 -->
+            <generator class="sequence" >
+                <param name="sequence">dhy_payOrder_seq</param>
+            </generator>
+        </id>
+        <property name="merNo">
+            <column name="MerNo">
+                <comment>商户号</comment>
+            </column>
+        </property>
+        <property name="merchantBillNo">
+            <column name="merchantBillNo">
+                <comment>商户订单号</comment>
+            </column>
+        </property>
+        <property name="systemBillNo">
+            <column name="systemBillNo">
+                <comment>系统订单号</comment>
+            </column>
+        </property>
+        <property name="amount">
+            <column name="Amount">
+                <comment>金额</comment>
+            </column>
+        </property>
+        <property name="returnURL">
+            <column name="returnURL">
+                <comment>同步地址</comment>
+            </column>
+        </property>
+        <property name="adviceURL">
+            <column name="adviceURL">
+                <comment>异步地址</comment>
+            </column>
+        </property>
+        <property name="signInfo">
+            <column name="SignInfo">
+                <comment>签名</comment>
+            </column>
+        </property>
+        <property name="orderTime">
+            <column name="orderTime">
+                <comment>商户订单时间</comment>
+            </column>
+        </property>
+        <property name="createTime">
+            <column name="CreateTime">
+                <comment>订单创建时间</comment>
+            </column>
+        </property>
+        <property name="remark">
+            <column name="remark">
+                <comment>备注</comment>
+            </column>
+        </property>
+    </class>
+</hibernate-mapping>

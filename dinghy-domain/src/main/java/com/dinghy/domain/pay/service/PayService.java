@@ -18,4 +18,9 @@ public interface PayService {
     void save(Object order);
 
     InquireResult InquirePay(String billNo);
+
+    String pay(String MerNo, String BillNo, String Amount,
+               String ReturnURL, String AdviceURL, String SignInfo,
+               String OrderTime, String defaultBankNumber,
+               String Remark, String products, String payType)throws Exception;
 }

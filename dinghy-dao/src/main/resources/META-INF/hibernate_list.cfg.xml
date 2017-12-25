@@ -10,5 +10,6 @@
 		<mapping resource="META-INF/hibernate_entity/User.hbm.xml"/>
 		<mapping resource="META-INF/hibernate_entity/Order.hbm.xml"/>
 		<mapping resource="META-INF/hibernate_entity/Refund.hbm.xml"/>
+		<mapping resource="META-INF/hibernate_entity/PayOrder.hbm.xml"/>
 	</session-factory>
 </hibernate-configuration>

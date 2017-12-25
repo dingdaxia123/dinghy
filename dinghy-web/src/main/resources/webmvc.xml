@@ -11,16 +11,16 @@
     <mvc:default-servlet-handler/>
 
     <!-- 拦截器 -->
-    <mvc:interceptors>
-        <mvc:interceptor>
-            <mvc:mapping path="/**"/>
-            <mvc:exclude-mapping path="/index/login"/>
-            <mvc:exclude-mapping path="/index/register"/>
-            <mvc:exclude-mapping path="/index/payAdviceUrl"/>
-            <mvc:exclude-mapping path="/index/verifyCode"/>
-            <bean class="com.dinghy.web.interceptor.FirstInterceptor"/>
-        </mvc:interceptor>
-    </mvc:interceptors>
+    <!--<mvc:interceptors>-->
+        <!--<mvc:interceptor>-->
+            <!--<mvc:mapping path="/**"/>-->
+            <!--<mvc:exclude-mapping path="/index/login"/>-->
+            <!--<mvc:exclude-mapping path="/index/register"/>-->
+            <!--<mvc:exclude-mapping path="/index/payAdviceUrl"/>-->
+            <!--<mvc:exclude-mapping path="/index/verifyCode"/>-->
+            <!--<bean class="com.dinghy.web.interceptor.FirstInterceptor"/>-->
+        <!--</mvc:interceptor>-->
+    <!--</mvc:interceptors>-->
 
     <!-- 静态资源的访问 -->
     <mvc:resources location="static/images/" mapping="/images/**"></mvc:resources>

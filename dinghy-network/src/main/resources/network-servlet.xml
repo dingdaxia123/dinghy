@@ -7,7 +7,7 @@
         http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd http://www.springframework.org/schema/mvc http://www.springframework.org/schema/mvc/spring-mvc.xsd">
 
 
-    <!--<mvc:annotation-driven />-->
+    <mvc:annotation-driven />
     <!--<mvc:default-servlet-handler />-->
 
     <!--<context:annotation-config/>-->
@@ -25,7 +25,7 @@
 
     <!--<context:annotation-config>com.dinghy.domain</context:annotation-config>-->
     <bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-        <property name="prefix" value="/WEB-INF/pages/"/>
+        <property name="prefix" value="/WEB-INF/jsp/"/>
         <property name="suffix" value=".jsp"/>
     </bean>
     <import resource="classpath:/META-INF/applicationContext.xml"/>

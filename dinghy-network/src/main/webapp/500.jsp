@@ -1,8 +1,8 @@
 <%--
   Created by IntelliJ IDEA.
   User: dinghy
-  Date: 2017/9/30
-  Time: 16:31
+  Date: 2017/12/13
+  Time: 11:41
   To change this template use File | Settings | File Templates.
 --%>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
@@ -11,10 +11,6 @@
     <title></title>
 </head>
 <body>
-<a href="/index/pay">支付</a>
-<a href="/index/refund">退款</a>
-<a href="/index/payInquire">查询</a>
-<a href="/index/deleteUser">删除</a>
-<a href="/index/findUser">查询信息</a>
+<h1>500</h1>
 </body>
 </html>

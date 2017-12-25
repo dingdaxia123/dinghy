@@ -11,6 +11,7 @@
     <title></title>
 </head>
 <body>
-<h1>${type}</h1>
+<h1>${result}</h1>
+<h2>支付页面</h2>
 </body>
 </html>

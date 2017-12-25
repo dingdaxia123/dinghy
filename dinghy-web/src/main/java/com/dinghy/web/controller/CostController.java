@@ -8,6 +8,8 @@ import com.dinghy.domain.cost.service.CostService;
 import com.dinghy.domain.util.CommonService;
 import com.dinghy.domain.util.Pagination;
 import com.dinghy.domain.util.StringUtils;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.core.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -118,5 +120,16 @@ public class CostController {
             }
         }
 
+    }
+
+    public static void main(String[] args) {
+        Logger logger = (Logger) LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+        logger.trace("trace level");
+        logger.debug("debug level");
+        logger.info("info level");
+        logger.warn("warn level");
+        logger.error("error level°¡ AAAA");
+        logger.fatal("fatal level");
+        System.out.println("°¡°¡µÄ");
     }
 }

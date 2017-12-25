@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core_1_1" %>
 <%--
   Created by IntelliJ IDEA.
   User: dinghy
@@ -11,8 +12,8 @@
     <title></title>
 </head>
 <body>
-<form action="https://gwapi.yemadai.com/pay/sslpayment" method="post">
-<c:forEach items="${payEntity}" var="payEntity">
+<form action="http://localhost:8000/dhy/pay" method="post">
+<%--<c:forEach items="${payEntity}" var="payEntity">--%>
 <tr>
     <td></td>
     <td><input type="hidden" name="MerNo" value="${payEntity.merNo}"></td>
@@ -52,12 +53,12 @@
     <td></td>
     <td><input type="hidden" name="OrderTime" value="${payEntity.orderTime}"></td>
   </tr>
-  <%--<tr>--%>
-    <%--<td></td>--%>
-    <%--<td><input type="hidden" name="products" value="<%=products%>"></td>--%>
-  <%--</tr>--%>
+  <tr>
+    <td></td>
+    <td><input type="hidden" name="Remark" value="${payEntity.remark}"></td>
+  </tr>
   <input type="submit" name="b1" value="查询">
-</c:forEach>
+<%--</c:forEach>--%>
 </form>
 </body>
 </html>

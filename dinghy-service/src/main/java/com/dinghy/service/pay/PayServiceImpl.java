@@ -3,6 +3,7 @@ package com.dinghy.service.pay;
 import com.dinghy.domain.order.Order;
 import com.dinghy.domain.order.Refund;
 import com.dinghy.domain.order.rpt.OrderRpt;
+import com.dinghy.domain.pay.PayOrder;
 import com.dinghy.domain.pay.entity.InquirePayEntity;
 import com.dinghy.domain.pay.entity.InquireResult;
 import com.dinghy.domain.pay.entity.PayEntity;
@@ -112,6 +113,15 @@ public class PayServiceImpl implements PayService {
             e.printStackTrace();
         }
         return inquireResult;
+    }
+
+    @Override
+    public String pay(String MerNo, String BillNo, String Amount, String ReturnURL, String AdviceURL, String SignInfo,
+                      String OrderTime, String defaultBankNumber, String Remark, String products, String payType) throws Exception{
+        PayOrder payOrder = new PayOrder(MerNo, BillNo, getPayBillNo(), Amount, ReturnURL, AdviceURL, new SimpleDateFormat(
+                "yyyyMMddHHmmss").parse(OrderTime), SignInfo, Remark);
+        orderRpt.put(payOrder);
+        return "ok";
     }
 
 //    @Override
