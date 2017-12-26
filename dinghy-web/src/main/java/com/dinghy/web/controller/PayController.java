@@ -34,7 +34,7 @@ public class PayController {
     @RequestMapping("/pay")
     public ModelAndView requestPay() {
         ModelAndView view = new ModelAndView("pay");
-        PayEntity payEntity = payService.pay("0.01");
+        PayEntity payEntity = payService.pay("0.011");
         view.addObject("payEntity", payEntity);
         return view;
     }

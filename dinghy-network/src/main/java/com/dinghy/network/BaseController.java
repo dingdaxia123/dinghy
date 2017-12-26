@@ -23,7 +23,7 @@ public class BaseController {
     protected Logger logger = (Logger) LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
 
     @ExceptionHandler(Exception.class)
-    // Âú®ControllerÁ±ª‰∏≠Ê∑ªÂä†ËØ•Ê≥®Ëß£ÊñπÊ≥ïÂç≥ÂèØ(Ê≥®ÊÑèÔºöÊ∑ªÂä†Âà∞Êüê‰∏™controllerÔºåÂè™ÈíàÂØπËØ•controllerËµ∑‰ΩúÁî®)
+    // ‘⁄Controller¿‡÷–ÃÌº”∏√◊¢Ω‚∑Ω∑®º¥ø…(◊¢“‚£∫ÃÌº”µΩƒ≥∏ˆcontroller£¨÷ª’Î∂‘∏√controller∆◊˜”√)
     public ModelAndView exceptionHandler(Exception ex) throws IOException {
         ModelAndView modelAndView = new ModelAndView();
         logger.error(ex.getMessage(), ex);
@@ -37,7 +37,7 @@ public class BaseController {
 //            return modelAndView;
 //        }
         else {
-            modelAndView.addObject("errorMessage", "Á≥ªÁªüÂºÇÂ∏∏");
+            modelAndView.addObject("errorMessage", ex.getMessage());
             modelAndView.setViewName("/500");
             return modelAndView;
         }
@@ -96,7 +96,7 @@ public class BaseController {
     }
 
     public static void main(String args[]) throws Exception {
-//        String a ="Êú±Áøî";
+//        String a ="÷ÏœË";
 //        String b = new String(new Base64().encode(a.getBytes("UTF-8")),"UTF-8");
 //        System.out.println(b);
 //        System.out.println(BaseController.base64read("PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGOCIgc3RhbmRhbG9uZT0ieWVzIj8+PHllbWFkYWk+PGFjY291bnROdW1iZXI+MTAwMDAxPC9hY2NvdW50TnVtYmVyPjxub3RpZnlVUkw+aHR0cDovLzE5Mi4xNjguMS40NTo4MDk5L3YxL3dpdGhkcmF3L3dpdGhkcmF3UmV0dXJuLmRvPC9ub3RpZnlVUkw+PHR0PjA8L3R0Pjx0cmFuc2Zlckxpc3Q+PHRyYW5zSWQ+TUJFQVcxNjExMjgxNzIwMjUyMTgyNjwvdHJhbnNJZD48YmFua0NvZGU+5bel5ZWG6ZO26KGMPC9iYW5rQ29kZT48cHJvdmljZT7ljJfkuqzluII8L3Byb3ZpY2U+PGNpdHk+5YyX5Lqs5biCPC9jaXR5PjxicmFuY2hOYW1lPueqn+eqv++8n+OAgu+8jO+8n+S4veS4veWnkDwvYnJhbmNoTmFtZT48YWNjb3VudE5hbWU+6Zu35Lqa5pifPC9hY2NvdW50TmFtZT48Y2FyZE5vPjlhOWNjODk0ODAxZGI2ZjU3NjdiNzJhNGE2MjJkZTBkZjlhZTIxYWQ3MDllNjJlNjk1ZWI2ZTBlNjNiYmNhMTE8L2NhcmRObz48YW1vdW50PjEwMDA8L2Ftb3VudD48cmVtYXJrPumrmOminOWAvFtNQkVBVzE2MTEyODE3MjAyNTIxODI2XeaPkOeOsDwvcmVtYXJrPjxzZWN1cmVDb2RlPjFBQjUzN0ZDNzIyOUU4ODJDMkQ2NEYzRTAzMzEyQzM3PC9zZWN1cmVDb2RlPjwvdHJhbnNmZXJMaXN0PjwveWVtYWRhaT4="));

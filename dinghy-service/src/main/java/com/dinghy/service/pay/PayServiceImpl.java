@@ -1,9 +1,11 @@
 package com.dinghy.service.pay;
 
+import com.dinghy.domain.exception.SkyException;
 import com.dinghy.domain.order.Order;
 import com.dinghy.domain.order.Refund;
 import com.dinghy.domain.order.rpt.OrderRpt;
 import com.dinghy.domain.pay.PayOrder;
+import com.dinghy.domain.pay.PayResultCode;
 import com.dinghy.domain.pay.entity.InquirePayEntity;
 import com.dinghy.domain.pay.entity.InquireResult;
 import com.dinghy.domain.pay.entity.PayEntity;
@@ -22,6 +24,7 @@ import javax.annotation.Resource;
 import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.io.UnsupportedEncodingException;
+import java.math.BigDecimal;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
@@ -30,6 +33,7 @@ import java.util.Date;
  */
 @Service
 public class PayServiceImpl implements PayService {
+    private static final String regexStr = "^[+]?(([1-9]\\d*[.]?)|(0.))(\\d{0,2})?$";
 
     @Resource
     private OrderRpt orderRpt;
@@ -118,6 +122,21 @@ public class PayServiceImpl implements PayService {
     @Override
     public String pay(String MerNo, String BillNo, String Amount, String ReturnURL, String AdviceURL, String SignInfo,
                       String OrderTime, String defaultBankNumber, String Remark, String products, String payType) throws Exception{
+
+        String data = MerNo+BillNo;
+        Md5Utils md5Utils = new Md5Utils();
+
+        if(BillNo.length()>50){
+            throw new SkyException(PayResultCode.ERR1018.getText());
+        }
+
+        if(!Amount.matches(regexStr) || new BigDecimal(Amount).compareTo(new BigDecimal("20000000")) == 1){
+            throw new SkyException(PayResultCode.ERR1002.getText());
+        }
+
+        if(!SignInfo.equals(md5Utils.getMD5ofStr(data))){
+            throw new SkyException(PayResultCode.ERR1008.getText());
+        }
         PayOrder payOrder = new PayOrder(MerNo, BillNo, getPayBillNo(), Amount, ReturnURL, AdviceURL, new SimpleDateFormat(
                 "yyyyMMddHHmmss").parse(OrderTime), SignInfo, Remark);
         orderRpt.put(payOrder);

@@ -11,6 +11,7 @@
     <title></title>
 </head>
 <body>
-<h1>500</h1>
+<h1>50啊啊</h1>
+<h2>${errorMessage}</h2>
 </body>
 </html>
