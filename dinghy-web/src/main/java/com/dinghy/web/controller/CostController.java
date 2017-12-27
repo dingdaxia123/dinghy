@@ -2,6 +2,7 @@ package com.dinghy.web.controller;
 
 
 import com.dinghy.domain.cost.Cost;
+import com.dinghy.domain.cost.CostStatus;
 import com.dinghy.domain.cost.CostType;
 import com.dinghy.domain.cost.rpt.CostRpt;
 import com.dinghy.domain.cost.service.CostService;
@@ -73,7 +74,7 @@ public class CostController {
 //            pag.setPageNo(Integer.valueOf(page));
 //        }
         pag.setTotalPage(costRpt.findTotalPage(1));
-        if(page != null){
+        if (page != null) {
             pag.setPageNo(Integer.valueOf(page));
         }
 
@@ -82,6 +83,7 @@ public class CostController {
         modelAndView.addObject("pager", pag);
         return modelAndView;
     }
+
     @RequestMapping("fee_modi")
     public ModelAndView updateCost(String id, String name, String baseDuration, String baseCost,
                                    String unitCost, String descr, String radFeeType, HttpServletRequest request,
@@ -100,26 +102,59 @@ public class CostController {
             modelAndView.addObject("status", cost.getStatus().getText());
             modelAndView.addObject("descr", cost.getDescr());
             return modelAndView;
-        }else {
-            Cost cost = (Cost)request.getSession().getAttribute("cost");
-            if("1".equals(radFeeType)){
+        } else {
+            Cost cost = (Cost) request.getSession().getAttribute("cost");
+            if ("1".equals(radFeeType)) {
                 cost.setCostType(CostType.Monthly);
                 modelAndView = new ModelAndView("redirect:fee_list");
+                cost.setName(request.getParameter(name));
+                cost.setUnitCost(request.getParameter(unitCost));
+                cost.setDescr(request.getParameter(descr));
+                cost.setBaseCost(request.getParameter(baseCost));
+                cost.setUnitCost(request.getParameter(unitCost));
                 costRpt.put(cost);
                 return modelAndView;
-            }else if(radFeeType.equals("2")) {
+            } else if (radFeeType.equals("2")) {
                 cost.setCostType(CostType.Package);
                 modelAndView = new ModelAndView("redirect:fee_list");
+                cost.setName(request.getParameter(name));
+                cost.setUnitCost(request.getParameter(unitCost));
+                cost.setDescr(request.getParameter(descr));
+                cost.setBaseCost(request.getParameter(baseCost));
+                cost.setUnitCost(request.getParameter(unitCost));
                 costRpt.put(cost);
                 return modelAndView;
-            }else {
+            } else {
                 cost.setCostType(CostType.Time);
+                cost.setName(request.getParameter(name));
+                cost.setUnitCost(request.getParameter(unitCost));
+                cost.setDescr(request.getParameter(descr));
+                cost.setBaseCost(request.getParameter(baseCost));
+                cost.setUnitCost(request.getParameter(unitCost));
                 costRpt.put(cost);
                 modelAndView = new ModelAndView("redirect:fee_list");
                 return modelAndView;
             }
         }
 
+
+    }
+
+    @RequestMapping("fee_detatil")
+    public ModelAndView findCost(String id) {
+        ModelAndView modelAndView = new ModelAndView("fee_detail");
+        Cost cost = costRpt.findById(Long.valueOf(id));
+        modelAndView.addObject("id", id);
+        modelAndView.addObject("name", cost.getName());
+        modelAndView.addObject("radFeeType", cost.getCostType().getText());
+        modelAndView.addObject("baseDuration", cost.getBaseDuration());
+        modelAndView.addObject("baseCost", cost.getBaseCost());
+        modelAndView.addObject("unitCost", cost.getUnitCost());
+        modelAndView.addObject("status", cost.getStatus().getText());
+        modelAndView.addObject("descr", cost.getDescr());
+        modelAndView.addObject("createTime", cost.getCreateTime());
+        modelAndView.addObject("startTime",cost.getStartTime());
+        return modelAndView;
     }
 
     public static void main(String[] args) {
@@ -128,8 +163,8 @@ public class CostController {
         logger.debug("debug level");
         logger.info("info level");
         logger.warn("warn level");
-        logger.error("error level°¡ AAAA");
+        logger.error("error levelï¿½ï¿½ AAAA");
         logger.fatal("fatal level");
-        System.out.println("°¡°¡µÄ");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 }

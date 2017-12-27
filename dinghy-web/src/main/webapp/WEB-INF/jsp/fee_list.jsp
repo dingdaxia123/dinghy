@@ -96,7 +96,7 @@
                         <c:forEach items="${pager.list}" var="list" varStatus="vs">
                             <tr>
                                 <td>${vs.index+1}</td>
-                                <td><a href="fee_detail.html">${list.name}</a></td>
+                                <td><a href="fee_detail?id=${list.id}">${list.name}</a></td>
                                 <td>${list.baseDuration}</td>
                                 <td>${list.baseCost}</td>
                                 <td>${list.unitCost}</td>
