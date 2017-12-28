@@ -108,21 +108,54 @@ public class CostController {
             if ("1".equals(radFeeType)) {
                 cost.setCostType(CostType.Monthly);
                 modelAndView = new ModelAndView("redirect:fee_list");
+                cost.setName(request.getParameter(name));
+                cost.setUnitCost(request.getParameter(unitCost));
+                cost.setDescr(request.getParameter(descr));
+                cost.setBaseCost(request.getParameter(baseCost));
+                cost.setUnitCost(request.getParameter(unitCost));
                 costRpt.put(cost);
                 return modelAndView;
             } else if (radFeeType.equals("2")) {
                 cost.setCostType(CostType.Package);
                 modelAndView = new ModelAndView("redirect:fee_list");
+                cost.setName(request.getParameter(name));
+                cost.setUnitCost(request.getParameter(unitCost));
+                cost.setDescr(request.getParameter(descr));
+                cost.setBaseCost(request.getParameter(baseCost));
+                cost.setUnitCost(request.getParameter(unitCost));
                 costRpt.put(cost);
                 return modelAndView;
             } else {
                 cost.setCostType(CostType.Time);
+                cost.setName(request.getParameter(name));
+                cost.setUnitCost(request.getParameter(unitCost));
+                cost.setDescr(request.getParameter(descr));
+                cost.setBaseCost(request.getParameter(baseCost));
+                cost.setUnitCost(request.getParameter(unitCost));
                 costRpt.put(cost);
                 modelAndView = new ModelAndView("redirect:fee_list");
                 return modelAndView;
             }
         }
 
+
+    }
+
+    @RequestMapping("fee_detatil")
+    public ModelAndView findCost(String id) {
+        ModelAndView modelAndView = new ModelAndView("fee_detail");
+        Cost cost = costRpt.findById(Long.valueOf(id));
+        modelAndView.addObject("id", id);
+        modelAndView.addObject("name", cost.getName());
+        modelAndView.addObject("radFeeType", cost.getCostType().getText());
+        modelAndView.addObject("baseDuration", cost.getBaseDuration());
+        modelAndView.addObject("baseCost", cost.getBaseCost());
+        modelAndView.addObject("unitCost", cost.getUnitCost());
+        modelAndView.addObject("status", cost.getStatus().getText());
+        modelAndView.addObject("descr", cost.getDescr());
+        modelAndView.addObject("createTime", cost.getCreateTime());
+        modelAndView.addObject("startTime",cost.getStartTime());
+        return modelAndView;
     }
 
     @RequestMapping(value = "startCost", method = RequestMethod.POST)
@@ -145,8 +178,8 @@ public class CostController {
         logger.debug("debug level");
         logger.info("info level");
         logger.warn("warn level");
-        logger.error("error level°¡ AAAA");
+        logger.error("error levelï¿½ï¿½ AAAA");
         logger.fatal("fatal level");
-        System.out.println("°¡°¡µÄ");
+        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
     }
 }
