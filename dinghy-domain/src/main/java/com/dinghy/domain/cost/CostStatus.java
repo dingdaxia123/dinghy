@@ -4,8 +4,8 @@ package com.dinghy.domain.cost;
  * Created by dinghy on 2017/12/19.
  */
 public enum CostStatus {
-    Open("å¼€é€š"),
-    Close("å…³é—­");
+    Open("¿ªÍ¨"),
+    Close("¹Ø±Õ");
     private final String text;
 
     CostStatus(String text){

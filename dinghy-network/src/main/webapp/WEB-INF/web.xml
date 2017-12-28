@@ -5,10 +5,10 @@
          version="3.0" metadata-complete="false">
     <display-name>Archetype Created Web Application</display-name>
 
-    <!--<context-param>-->
-    <!--<param-name>contextConfigLocation</param-name>-->
-    <!--<param-value>classpath:network.xml</param-value>-->
-    <!--</context-param>-->
+    <context-param>
+    <param-name>contextConfigLocation</param-name>
+    <param-value>classpath:spring_task.xml</param-value>
+    </context-param>
 
     <servlet>
         <servlet-name>network</servlet-name>

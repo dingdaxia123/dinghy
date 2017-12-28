@@ -100,4 +100,9 @@ public class CostRptImpl extends Hibernate implements CostRpt {
         getHibernateTemplate().update(cost);
     }
 
+    @Override
+    public void deleteCost(Cost cost) {
+        getHibernateTemplate().delete(cost);
+    }
+
 }

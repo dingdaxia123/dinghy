@@ -17,6 +17,7 @@
     <title>资费列表</title>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global.css"/>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global_color.css"/>
+    <script type="text/javascript" src="/static/js/jquery-1.10.1.min.js"></script>
     <script language="javascript" type="text/javascript">
         //排序按钮的点击事件
         function sort(btnObj) {
@@ -27,9 +28,26 @@
         }
 
         //启用
-        function startFee() {
-            var r = window.confirm("确定要启用此资费吗？资费启用后将不能修改和删除。");
-            document.getElementById("operate_result_info").style.display = "block";
+        function startFee(obj1) {
+//            var r = window.confirm("确定要启用此资费吗？资费启用后将不能修改和删除。");
+//            document.getElementById("operate_result_info").style.display = "block";
+            if (window.confirm("确认开启吗?")) {
+                var path = "${ctx}/index/startCost";
+                $.post(path, {
+                            id: obj1
+                        }, function (data) {
+                            if (data == "ok") {
+                                alert("启动成功!");
+                                var x = document.getElementById("Form");
+                                x.action = "fee_list";
+                                x.submit();
+                            } else {
+                                alert("操作失败");
+                                return
+                            }
+                        }
+                );
+            }
         }
         //删除
         function deleteFee() {
@@ -62,7 +80,7 @@
 <!--导航区域结束-->
 <!--主要区域开始-->
 <div id="main">
-    <form action="fee_list" method="post">
+    <form action="fee_list" method="post" id="Form">
         <!--排序-->
         <div class="search_add">
             <div>
@@ -102,9 +120,9 @@
                                 <td>${list.unitCost}</td>
                                 <td>${list.createTime}</td>
                                 <td>${list.startTime}</td>
-                                <td>${list.status}</td>
+                                <td>${list.status.text}</td>
                                 <td>
-                                    <input type="button" value="启用" class="btn_start" onclick="startFee();"/>
+                                    <input type="button" value="启用" class="btn_start" onclick="startFee(${list.id});"/>
                                     <input type="button" value="修改" class="btn_modify"
                                            onclick="location.href='fee_modi?id=${list.id}';"/>
                                     <input type="button" value="禁用" class="btn_delete" onclick="deleteFee();"/>
@@ -121,14 +139,14 @@
             </table>
 
             <%--<p>业务说明：<br/>--%>
-                <%--1、创建资费时，状态为暂停，记载创建时间；<br/>--%>
-                <%--2、暂停状态下，可修改，可删除；<br/>--%>
-                <%--3、开通后，记载开通时间，且开通后不能修改、不能再停用、也不能删除；<br/>--%>
-                <%--4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）--%>
+            <%--1、创建资费时，状态为暂停，记载创建时间；<br/>--%>
+            <%--2、暂停状态下，可修改，可删除；<br/>--%>
+            <%--3、开通后，记载开通时间，且开通后不能修改、不能再停用、也不能删除；<br/>--%>
+            <%--4、业务账号修改资费时，在下月底统一触发，修改其关联的资费ID（此触发动作由程序处理）--%>
             <%--</p>--%>
         </div>
         <!--分页-->
-            <%--<div id="pages"><page:page page="${pager}" info="true" pagenum="5" url="${ctx}/index/fee_list"/></div>--%>
+        <%--<div id="pages"><page:page page="${pager}" info="true" pagenum="5" url="${ctx}/index/fee_list"/></div>--%>
         <div id="pages">
             <c:if test="${pager.pageNo == 1}">
                 <a href="#">上一页</a>
@@ -136,15 +154,16 @@
             <c:if test="${pager.pageNo != 1}">
                 <a href="fee_list?page=${pager.pageNo-1}">上一页</a>
             </c:if>
-            <c:forEach  begin="1" end="${pager.totalPage}" var="p">
+            <c:forEach begin="1" end="${pager.totalPage}" var="p">
                 <%--<c:if test="">--%>
 
                 <%--</c:if>--%>
                 <%--<c:if test="${p != pager.pageNo}">--%>
-                    <%----%>
+                <%----%>
                 <%--</c:if>--%>
                 <c:choose>
-                    <c:when test="${p==pager.pageNo}"><a href="fee_list?page=${p}" class="current_page">${p}</a></c:when>
+                    <c:when test="${p==pager.pageNo}"><a href="fee_list?page=${p}"
+                                                         class="current_page">${p}</a></c:when>
                     <c:otherwise><a href="fee_list?page=${p}">${p}</a></c:otherwise>
                 </c:choose>
             </c:forEach>

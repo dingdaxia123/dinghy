@@ -41,4 +41,6 @@ public interface CostRpt {
      */
     void update(Cost cost);
 
+    void deleteCost(Cost cost);
+
 }
