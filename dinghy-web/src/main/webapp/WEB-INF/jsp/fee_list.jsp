@@ -51,7 +51,7 @@
         }
         //删除
         function deleteFee() {
-            var r = window.confirm("确定要删除此资费吗？");
+            var r = window.confirm("确定要删除此资费吗1？");
         }
     </script>
 </head>
