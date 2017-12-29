@@ -50,9 +50,26 @@
             }
         }
         //删除
-        function deleteFee() {
-            var r = window.confirm("确定要删除此资费吗1？");
+        function deleteFee(obj2) {
+            if( window.confirm("确定要禁用此资费吗1？")){
+                var path = "${ctx}/index/deleteCost";
+                $.post(path, {
+                            id: obj2
+                        }, function (data) {
+                            if (data == "ok") {
+                                alert("禁用成功!");
+                                var x = document.getElementById("Form");
+                                x.action = "fee_list";
+                                x.submit();
+                            } else {
+                                alert("操作失败");
+                                return
+                            }
+                        }
+                );
+            }
         }
+
     </script>
 </head>
 <body>
@@ -125,7 +142,7 @@
                                     <input type="button" value="启用" class="btn_start" onclick="startFee(${list.id});"/>
                                     <input type="button" value="修改" class="btn_modify"
                                            onclick="location.href='fee_modi?id=${list.id}';"/>
-                                    <input type="button" value="禁用" class="btn_delete" onclick="deleteFee();"/>
+                                    <input type="button" value="禁用" class="btn_delete" onclick="deleteFee(${list.id});"/>
                                 </td>
                             </tr>
                         </c:forEach>

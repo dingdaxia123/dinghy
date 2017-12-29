@@ -47,13 +47,15 @@
     <div class="text_info clearfix"><span>资费状态：</span></div>
     <div class="input_info">
       <select class="readonly" disabled>
-        var status = "${status}";
+        var status = "${list.status.text}";
         if (status == "开通"){
         <option selected="selected">开通</option>
         }else{
-        <option selected="selected">暂停</option>
+        <option selected="selected">禁用</option>
         }
-        <%--<option>删除</option>--%>
+        <%--else{--%>
+        <%--<option selected="selected">删除</option>--%>
+        <%--}--%>
       </select>
     </div>
     <div class="text_info clearfix"><span>资费类型：</span></div>

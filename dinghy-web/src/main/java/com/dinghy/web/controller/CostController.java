@@ -141,7 +141,7 @@ public class CostController {
 
     }
 
-    @RequestMapping("fee_detatil")
+    @RequestMapping("fee_detail")
     public ModelAndView findCost(String id) {
         ModelAndView modelAndView = new ModelAndView("fee_detail");
         Cost cost = costRpt.findById(Long.valueOf(id));
@@ -154,7 +154,7 @@ public class CostController {
         modelAndView.addObject("status", cost.getStatus().getText());
         modelAndView.addObject("descr", cost.getDescr());
         modelAndView.addObject("createTime", cost.getCreateTime());
-        modelAndView.addObject("startTime",cost.getStartTime());
+        modelAndView.addObject("startTime", cost.getStartTime());
         return modelAndView;
     }
 
@@ -172,14 +172,29 @@ public class CostController {
         return "error";
     }
 
-    public static void main(String[] args) {
-        Logger logger = (Logger) LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
+    @RequestMapping(value = "deleteCost", method = RequestMethod.POST)
+    @ResponseBody
+    public String deleteCost(String id) {
+        if (id != null) {
+            Cost cost = costRpt.findById(Long.valueOf(id));
+            if (cost != null) {
+                cost.setStatus(CostStatus.Close);
+                costRpt.put(cost);
+                return "ok";
+            }
+        }
+        return "error";
+    }
+
+
+public static void main(String[]args){
+        Logger logger=(Logger)LogManager.getLogger(LogManager.ROOT_LOGGER_NAME);
         logger.trace("trace level");
         logger.debug("debug level");
         logger.info("info level");
         logger.warn("warn level");
-        logger.error("error level�� AAAA");
+        logger.error("error level?? AAAA");
         logger.fatal("fatal level");
-        System.out.println("������");
-    }
-}
+        System.out.println("??????");
+        }
+        }
