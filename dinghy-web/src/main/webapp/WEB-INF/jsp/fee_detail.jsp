@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
   <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-  <title>达内－NetCTOSS</title>
+  <title>资费信息</title>
   <link type="text/css" rel="stylesheet" media="all" href="/static/css/global.css" />
   <link type="text/css" rel="stylesheet" media="all" href="/static/css/global_color.css" />
 </head>
@@ -46,17 +46,24 @@
     <div class="input_info"><input type="text" class="readonly" readonly value="${name}"/></div>
     <div class="text_info clearfix"><span>资费状态：</span></div>
     <div class="input_info">
-      <select class="readonly" disabled>
-        var status = "${list.status.text}";
-        if (status == "开通"){
-        <option selected="selected">开通</option>
-        }else{
-        <option selected="selected">禁用</option>
-        }
+      <%--<select class="readonly" disabled>--%>
+        <%--var status = "${list.status.text}";--%>
+        <%--if (status == "开通"){--%>
+        <%--<option selected="selected">开通</option>--%>
+        <%--}else{--%>
+        <%--<option selected="selected">禁用</option>--%>
+        <%--}--%>
         <%--else{--%>
         <%--<option selected="selected">删除</option>--%>
         <%--}--%>
-      </select>
+      <%--</select>--%>
+        <select class="readonly" disabled>
+          <c:if test="${status == '开通'}"><option>开通</option></c:if>
+          <c:if test="${status == '关闭'}"><option>关闭</option></c:if>
+          <%--<option>开通</option>--%>
+          <%--<option>暂停</option>--%>
+          <%--<option>删除</option>--%>
+        </select>
     </div>
     <div class="text_info clearfix"><span>资费类型：</span></div>
     <div class="input_info fee_type">
@@ -124,9 +131,9 @@
 </div>
 <!--主要区域结束-->
 <div id="footer">
-  <span>[源自北美的技术，最优秀的师资，最真实的企业环境，最适用的实战项目]</span>
-  <br />
-  <span>版权所有(C)加拿大达内IT培训集团公司 </span>
+  <p>[源自扬哥的技术，最优秀的扬哥资源，最真实的企业环境，最适用崽崽的实战项目]</p>
+  <br/>
+  <p>版权所有(C)扬哥IT专训崽崽集团公司</p>
 </div>
 </body>
 </html>

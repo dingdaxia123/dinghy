@@ -11,7 +11,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
-    <title>达内－NetCTOSS</title>
+    <title>修改资费</title>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global.css"/>
     <link type="text/css" rel="stylesheet" media="all" href="/static/css/global_color.css"/>
     <script language="javascript" type="text/javascript">
@@ -185,7 +185,6 @@
 <div id="footer">
     <p>[源自扬哥的技术，最优秀的扬哥资源，最真实的企业环境，最适用崽崽的实战项目]</p>
     <br/>
-
     <p>版权所有(C)扬哥IT专训崽崽集团公司</p>
 </div>
 </body>
