@@ -73,10 +73,10 @@ public class CostRptImpl extends Hibernate implements CostRpt {
     public int findTotalPage(int pageSize) {
         String hql="select count(*) from Cost";
         List<Object> list=(List<Object>)getHibernateTemplate().find(hql);
-        System.out.println(list);
+//        System.out.println(list);
         //查出总行数
         int rows=Integer.valueOf(list.get(0).toString());
-        System.out.println(4%2);
+//        System.out.println(4%2);
         //根据总行数算出页数
         if(rows%pageSize==0)
             return rows/pageSize;

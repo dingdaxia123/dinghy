@@ -79,9 +79,10 @@ public class CostController {
             pag.setPageNo(Integer.valueOf(page));
         }
 
-        int tot = pag.getTotalPage();
+//        int tot = pag.getTotalPage();
 
         modelAndView.addObject("pager", pag);
+        modelAndView.addObject("page", pag.getPageNo());
         return modelAndView;
     }
 

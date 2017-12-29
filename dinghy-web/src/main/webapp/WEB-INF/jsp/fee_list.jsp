@@ -28,7 +28,7 @@
         }
 
         //启用
-        function startFee(obj1) {
+        function startFee(obj1,obj2) {
 //            var r = window.confirm("确定要启用此资费吗？资费启用后将不能修改和删除。");
 //            document.getElementById("operate_result_info").style.display = "block";
             if (window.confirm("确认开启吗?")) {
@@ -39,7 +39,7 @@
                             if (data == "ok") {
                                 alert("启动成功!");
                                 var x = document.getElementById("Form");
-                                x.action = "fee_list";
+                                x.action = "fee_list?page="+obj2;
                                 x.submit();
                             } else {
                                 alert("操作失败");
@@ -50,16 +50,16 @@
             }
         }
         //删除
-        function deleteFee(obj2) {
-            if( window.confirm("确定要禁用此资费吗1？")){
+        function deleteFee(obj1,obj2) {
+            if( window.confirm("确定要禁用此资费吗？")){
                 var path = "${ctx}/index/deleteCost";
                 $.post(path, {
-                            id: obj2
+                            id: obj1
                         }, function (data) {
                             if (data == "ok") {
                                 alert("禁用成功!");
                                 var x = document.getElementById("Form");
-                                x.action = "fee_list";
+                                x.action = "fee_list?page="+obj2;
                                 x.submit();
                             } else {
                                 alert("操作失败");
@@ -139,10 +139,10 @@
                                 <td>${list.startTime}</td>
                                 <td>${list.status.text}</td>
                                 <td>
-                                    <input type="button" value="启用" class="btn_start" onclick="startFee(${list.id});"/>
+                                    <input type="button" value="启用" class="btn_start" onclick="startFee(${list.id},${page});"/>
                                     <input type="button" value="修改" class="btn_modify"
                                            onclick="location.href='fee_modi?id=${list.id}';"/>
-                                    <input type="button" value="禁用" class="btn_delete" onclick="deleteFee(${list.id});"/>
+                                    <input type="button" value="禁用" class="btn_delete" onclick="deleteFee(${list.id},${page});"/>
                                 </td>
                             </tr>
                         </c:forEach>
