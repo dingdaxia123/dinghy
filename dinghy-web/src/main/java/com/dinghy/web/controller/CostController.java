@@ -178,8 +178,8 @@ public class CostController {
         logger.debug("debug level");
         logger.info("info level");
         logger.warn("warn level");
-        logger.error("error levelï¿½ï¿½ AAAA");
+        logger.error("error level°¡°¡ AAAA");
         logger.fatal("fatal level");
-        System.out.println("ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½");
+        System.out.println("aa°¡°¡");
     }
 }
