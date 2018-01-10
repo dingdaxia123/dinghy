@@ -2,8 +2,10 @@ package com.dinghy.web.controller;
 
 import com.dinghy.domain.user.User;
 import com.dinghy.domain.user.UserResult;
+import com.dinghy.domain.user.rpt.UserRpt;
 import com.dinghy.domain.user.service.UserService;
 import com.dinghy.domain.util.CaptchaUtil;
+import com.dinghy.domain.util.Pagination;
 import com.dinghy.domain.util.StringUtils;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.core.Logger;
@@ -32,8 +34,8 @@ public class UserController {
 
     @Resource
     private UserService userService;
-
-
+    @Resource
+    private UserRpt userRpt;
     @ResponseBody
     @RequestMapping("user")
     public String saveUser(String name, String password) {
@@ -159,6 +161,39 @@ public class UserController {
     @RequestMapping("main")
     public String main() {
         return "main";
+    }
+
+    @RequestMapping("admin_add")
+    public ModelAndView addCost(String name, String password,String password1, String phone, String email, String accountNumber) {
+        ModelAndView modelAndView;
+        if (StringUtils.isNotBlank(name)) {
+            modelAndView = new ModelAndView("admin_list");
+            String result = userService.addSave(name,password,phone,password1,email,accountNumber);
+            modelAndView.addObject("result", result);
+            return modelAndView;
+        }
+        modelAndView = new ModelAndView("admin_add");
+        return modelAndView;
+    }
+    @RequestMapping("admin_list")
+    public ModelAndView listCost(String page) {
+        List<User> userList;
+        ModelAndView modelAndView = new ModelAndView("admin_list");
+        if (page != null) {
+            userList = userRpt.findByPage(Integer.valueOf(page), 1);
+        } else {
+            userList = userRpt.findByPage(1, 1);
+        }
+        Pagination pag = new Pagination();
+        pag.setList(userList);
+        pag.setTotalCount(userList.size());
+        pag.setTotalPage(userRpt.findTotalPage(1));
+        if (page != null) {
+            pag.setPageNo(Integer.valueOf(page));
+        }
+        modelAndView.addObject("pager", pag);
+        modelAndView.addObject("page", pag.getPageNo());
+        return modelAndView;
     }
 
     @RequestMapping("/check")

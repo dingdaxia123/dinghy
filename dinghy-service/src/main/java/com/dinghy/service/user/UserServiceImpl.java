@@ -80,12 +80,22 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void updatePwd(String password, User user) {
-        if(StringUtils.isNotBlank(password) && user != null){
+        if (StringUtils.isNotBlank(password) && user != null) {
             user.setPassword(password);
             userRpt.put(user);
         }
 
     }
 
+    @Override
+    public String addSave(String name, String password, String password1, String phone, String email, String accountNumber) {
+        if (StringUtils.isNotBlank(name)) {
+            User user = new User(name, password, phone, email, accountNumber);
+            if (password == password1) {
+                userRpt.put(user);
+            }
+        }
+        return null;
+    }
 
 }

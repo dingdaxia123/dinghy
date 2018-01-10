@@ -16,6 +16,8 @@ public interface UserRpt {
 
     List<User> findUser(String name);
 
+    List<User> findByPage(int page,int pageSize);
 
+    int findTotalPage(int pageSize);
 
 }

@@ -20,6 +20,8 @@ public interface UserService {
 
     void updatePwd(String password,User user);
 
+    String addSave(String name, String password,String password1, String phone, String email, String accountNumber);
+
 
 
 }

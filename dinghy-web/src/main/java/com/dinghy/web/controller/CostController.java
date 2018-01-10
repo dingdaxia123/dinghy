@@ -43,7 +43,7 @@ public class CostController {
     private CostRpt costRpt;
 
     @RequestMapping("fee_add")
-    public ModelAndView addCost(String name, String baseDuration, String baseCost, String unitCost, String descr, String radFeeType) {
+      public ModelAndView addCost(String name, String baseDuration, String baseCost, String unitCost, String descr, String radFeeType) {
         ModelAndView modelAndView;
         if (StringUtils.isNotBlank(name)) {
             modelAndView = new ModelAndView("fee_list");
